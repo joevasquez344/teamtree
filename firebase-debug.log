@@ -1,0 +1,381 @@
+[debug] [2023-08-08T19:53:56.217Z] ----------------------------------------------------------------------
+[debug] [2023-08-08T19:53:56.218Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\joeva\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2023-08-08T19:53:56.219Z] CLI Version:   12.4.7
+[debug] [2023-08-08T19:53:56.219Z] Platform:      win32
+[debug] [2023-08-08T19:53:56.219Z] Node Version:  v16.13.1
+[debug] [2023-08-08T19:53:56.220Z] Time:          Tue Aug 08 2023 12:53:56 GMT-0700 (Pacific Daylight Time)
+[debug] [2023-08-08T19:53:56.220Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-08-08T19:53:56.286Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-08-08T19:53:56.287Z] > authorizing via signed-in user (joevasquez344@gmail.com)
+[debug] [2023-08-08T19:53:56.287Z] [iam] checking project teamtree-768fa for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2023-08-08T19:53:56.289Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/teamtree-768fa:testIamPermissions [none]
+[debug] [2023-08-08T19:53:56.289Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/teamtree-768fa:testIamPermissions x-goog-quota-user=projects/teamtree-768fa
+[debug] [2023-08-08T19:53:56.289Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/teamtree-768fa:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-08-08T19:53:56.654Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/teamtree-768fa:testIamPermissions 200
+[debug] [2023-08-08T19:53:56.654Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/teamtree-768fa:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-08-08T19:53:56.655Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/teamtree-768fa [none]
+[debug] [2023-08-08T19:53:57.040Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/teamtree-768fa 200
+[debug] [2023-08-08T19:53:57.040Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/teamtree-768fa {"projectId":"teamtree-768fa","projectNumber":"891469149306","displayName":"teamtree","name":"projects/teamtree-768fa","resources":{"hostingSite":"teamtree-768fa"},"state":"ACTIVE","etag":"1_59fe3c70-800c-4f8c-8d69-6e8a521393f7"}
+[debug] [2023-08-08T19:54:02.418Z] defaultcredentials: writing to file C:\Users\joeva\AppData\Roaming\firebase\joevasquez344_gmail_com_application_default_credentials.json
+[debug] [2023-08-08T19:54:02.419Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/teamtree-768fa/sites pageToken=&pageSize=10
+[debug] [2023-08-08T19:54:02.878Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/teamtree-768fa/sites 200
+[debug] [2023-08-08T19:54:02.879Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/teamtree-768fa/sites {"sites":[{"name":"projects/teamtree-768fa/sites/teamtree-768fa","defaultUrl":"https://teamtree-768fa.web.app","appId":"1:891469149306:web:d2d91ae34dadd354aaf7c3","type":"DEFAULT_SITE"}]}
+[debug] [2023-08-08T19:54:02.879Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:891469149306:web:d2d91ae34dadd354aaf7c3/config [none]
+[debug] [2023-08-08T19:54:03.294Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:891469149306:web:d2d91ae34dadd354aaf7c3/config 200
+[debug] [2023-08-08T19:54:03.294Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:891469149306:web:d2d91ae34dadd354aaf7c3/config {"projectId":"teamtree-768fa","appId":"1:891469149306:web:d2d91ae34dadd354aaf7c3","storageBucket":"teamtree-768fa.appspot.com","apiKey":"AIzaSyCKKj46ubmWAmaywD7bpjyMIRN3sCtu1SM","authDomain":"teamtree-768fa.firebaseapp.com","messagingSenderId":"891469149306"}
+[info] 
+   Thank you for trying our early preview of Next.js support on Firebase Hosting.
+   During the preview, support is best-effort and breaking changes can be expected. Proceed with caution.
+
+   Documentation: https://firebase.google.com/docs/hosting/frameworks/nextjs
+   File a bug: https://github.com/firebase/firebase-tools/issues/new?template=bug_report.md
+   Submit a feature request: https://github.com/firebase/firebase-tools/issues/new?template=feature_request.md
+
+   We'd love to learn from you. Express your interest in helping us shape the future of Firebase Hosting: https://goo.gle/41enW5X
+
+[info] (node:13760) ExperimentalWarning: stream/web is an experimental feature. This feature could change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[info] - info Loaded env from C:\Users\joeva\web-development\projects\team-tree\.env
+
+[info] - info Creating an optimized production build...
+
+[info] - info Compiled successfully
+
+[info] - info Skipping linting
+
+[info] - info Checking validity of types...
+
+[info] - info Collecting page data...
+
+[info] (node:30376) ExperimentalWarning: stream/web is an experimental feature. This feature could change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[info] (node:11968) ExperimentalWarning: stream/web is an experimental feature. This feature could change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[info] (node:30564) ExperimentalWarning: stream/web is an experimental feature. This feature could change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[info] (node:26632) ExperimentalWarning: stream/web is an experimental feature. This feature could change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[info] (node:25248) ExperimentalWarning: stream/web is an experimental feature. This feature could change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[info] (node:30252) ExperimentalWarning: stream/web is an experimental feature. This feature could change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[info] (node:30584) ExperimentalWarning: stream/web is an experimental feature. This feature could change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[info] (node:21392) ExperimentalWarning: stream/web is an experimental feature. This feature could change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[info] - warn "next" should not be imported directly, imported in C:\Users\joeva\web-development\projects\team-tree\.next\server\pages\index.js
+See more info here: https://nextjs.org/docs/messages/import-next
+
+[info] - info Generating static pages (0/17)
+
+[info] - warn "next" should not be imported directly, imported in C:\Users\joeva\web-development\projects\team-tree\.next\server\pages\index.js
+See more info here: https://nextjs.org/docs/messages/import-next
+
+[info] Auth C:  <ref *1> {
+  '$$typeof': Symbol(react.provider),
+  _context: <ref *2> {
+    '$$typeof': Symbol(react.context),
+    _currentValue: undefined,
+    _currentValue2: undefined,
+    _threadCount: 0,
+    Provider: [Circular *1],
+    Consumer: [Circular *2],
+    _defaultValue: null,
+    _globalName: null
+  }
+}
+
+[info] Auth C:  <ref *1> {
+  '$$typeof': Symbol(react.provider),
+  _context: <ref *2> {
+    '$$typeof': Symbol(react.context),
+    _currentValue: undefined,
+    _currentValue2: undefined,
+    _threadCount: 0,
+    Provider: [Circular *1],
+    Consumer: [Circular *2],
+    _defaultValue: null,
+    _globalName: null
+  }
+}
+Auth C:  <ref *1> {
+  '$$typeof': Symbol(react.provider),
+  _context: <ref *2> {
+    '$$typeof': Symbol(react.context),
+    _currentValue: undefined,
+    _currentValue2: undefined,
+    _threadCount: 0,
+    Provider: [Circular *1],
+    Consumer: [Circular *2],
+    _defaultValue: null,
+    _globalName: null
+  }
+}
+Auth C:  <ref *1> {
+  '$$typeof': Symbol(react.provider),
+  _context: <ref *2> {
+    '$$typeof': Symbol(react.context),
+    _currentValue: undefined,
+    _currentValue2: undefined,
+    _threadCount: 0,
+    Provider: [Circular *1],
+    Consumer: [Circular *2],
+    _defaultValue: null,
+    _globalName: null
+  }
+}
+Auth C:  <ref *1> {
+  '$$typeof': Symbol(react.provider),
+  _context: <ref *2> {
+    '$$typeof': Symbol(react.context),
+    _currentValue: undefined,
+    _currentValue2: undefined,
+    _threadCount: 0,
+    Provider: [Circular *1],
+    Consumer: [Circular *2],
+    _defaultValue: null,
+    _globalName: null
+  }
+}
+Auth C:  <ref *1> {
+  '$$typeof': Symbol(react.provider),
+  _context: <ref *2> {
+    '$$typeof': Symbol(react.context),
+    _currentValue: undefined,
+    _currentValue2: undefined,
+    _threadCount: 0,
+    Provider: [Circular *1],
+    Consumer: [Circular *2],
+    _defaultValue: null,
+    _globalName: null
+  }
+}
+
+[info] Auth C:  <ref *1> {
+  '$$typeof': Symbol(react.provider),
+  _context: <ref *2> {
+    '$$typeof': Symbol(react.context),
+    _currentValue: undefined,
+    _currentValue2: undefined,
+    _threadCount: 0,
+    Provider: [Circular *1],
+    Consumer: [Circular *2],
+    _defaultValue: null,
+    _globalName: null
+  }
+}
+
+[info] Auth C:  <ref *1> {
+  '$$typeof': Symbol(react.provider),
+  _context: <ref *2> {
+    '$$typeof': Symbol(react.context),
+    _currentValue: undefined,
+    _currentValue2: undefined,
+    _threadCount: 0,
+    Provider: [Circular *1],
+    Consumer: [Circular *2],
+    _defaultValue: null,
+    _globalName: null
+  }
+}
+
+[info] Auth C:  <ref *1> {
+  '$$typeof': Symbol(react.provider),
+  _context: <ref *2> {
+    '$$typeof': Symbol(react.context),
+    _currentValue: undefined,
+    _currentValue2: undefined,
+    _threadCount: 0,
+    Provider: [Circular *1],
+    Consumer: [Circular *2],
+    _defaultValue: null,
+    _globalName: null
+  }
+}
+
+[info] Auth C:  <ref *1> {
+  '$$typeof': Symbol(react.provider),
+  _context: <ref *2> {
+    '$$typeof': Symbol(react.context),
+    _currentValue: undefined,
+    _currentValue2: undefined,
+    _threadCount: 0,
+    Provider: [Circular *1],
+    Consumer: [Circular *2],
+    _defaultValue: null,
+    _globalName: null
+  }
+}
+
+[info] - info Generating static pages (4/17)
+
+[info] Auth C:  <ref *1> {
+  '$$typeof': Symbol(react.provider),
+  _context: <ref *2> {
+    '$$typeof': Symbol(react.context),
+    _currentValue: undefined,
+    _currentValue2: undefined,
+    _threadCount: 0,
+    Provider: [Circular *1],
+    Consumer: [Circular *2],
+    _defaultValue: null,
+    _globalName: null
+  }
+}
+
+[info] Auth C:  <ref *1> {
+  '$$typeof': Symbol(react.provider),
+  _context: <ref *2> {
+    '$$typeof': Symbol(react.context),
+    _currentValue: undefined,
+    _currentValue2: undefined,
+    _threadCount: 0,
+    Provider: [Circular *1],
+    Consumer: [Circular *2],
+    _defaultValue: null,
+    _globalName: null
+  }
+}
+
+[info] - info Generating static pages (8/17)
+
+[info] Auth C:  <ref *1> {
+  '$$typeof': Symbol(react.provider),
+  _context: <ref *2> {
+    '$$typeof': Symbol(react.context),
+    _currentValue: undefined,
+    _currentValue2: undefined,
+    _threadCount: 0,
+    Provider: [Circular *1],
+    Consumer: [Circular *2],
+    _defaultValue: null,
+    _globalName: null
+  }
+}
+
+[info] Auth C:  <ref *1> {
+  '$$typeof': Symbol(react.provider),
+  _context: <ref *2> {
+    '$$typeof': Symbol(react.context),
+    _currentValue: undefined,
+    _currentValue2: undefined,
+    _threadCount: 0,
+    Provider: [Circular *1],
+    Consumer: [Circular *2],
+    _defaultValue: null,
+    _globalName: null
+  }
+}
+
+[info] - info Generating static pages (12/17)
+
+[info] Auth C:  <ref *1> {
+  '$$typeof': Symbol(react.provider),
+  _context: <ref *2> {
+    '$$typeof': Symbol(react.context),
+    _currentValue: undefined,
+    _currentValue2: undefined,
+    _threadCount: 0,
+    Provider: [Circular *1],
+    Consumer: [Circular *2],
+    _defaultValue: null,
+    _globalName: null
+  }
+}
+
+[info] Auth C:  <ref *1> {
+  '$$typeof': Symbol(react.provider),
+  _context: <ref *2> {
+    '$$typeof': Symbol(react.context),
+    _currentValue: undefined,
+    _currentValue2: undefined,
+    _threadCount: 0,
+    Provider: [Circular *1],
+    Consumer: [Circular *2],
+    _defaultValue: null,
+    _globalName: null
+  }
+}
+
+[info] (node:24956) ExperimentalWarning: stream/web is an experimental feature. This feature could change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[info] (node:24956) ExperimentalWarning: buffer.Blob is an experimental feature. This feature could change at any time
+
+[info] - info Generating static pages (17/17)
+
+[info] (node:19108) ExperimentalWarning: stream/web is an experimental feature. This feature could change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[info] (node:1904) ExperimentalWarning: stream/web is an experimental feature. This feature could change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[info] (node:8816) ExperimentalWarning: stream/web is an experimental feature. This feature could change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[info] (node:11664) ExperimentalWarning: stream/web is an experimental feature. This feature could change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[info] (node:12328) ExperimentalWarning: stream/web is an experimental feature. This feature could change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[info] - info Finalizing page optimization...
+
+[info] 
+
+[info] Route (app)                                Size     First Load JS
+─ ○ /favicon.ico                           0 B                0 B
++ First Load JS shared by all              0 B
+
+Route (pages)                              Size     First Load JS
+┌ ○ /                                      2.49 kB         365 kB
+├   /_app                                  0 B             359 kB
+├ ○ /404                                   257 B           359 kB
+├ λ /api/hello                             0 B             359 kB
+├ ○ /createteam                            525 B           359 kB
+├ ○ /login                                 1.14 kB         360 kB
+├ ○ /register                              1.75 kB         360 kB
+├ ○ /teams                                 1.08 kB         364 kB
+├ ○ /teams/[teamId]                        1.29 kB         378 kB
+├ ○ /teams/[teamId]/chat                   2.11 kB         364 kB
+├ ○ /teams/[teamId]/chat/[username]        2.06 kB         364 kB
+├ ○ /teams/[teamId]/groups                 676 B           359 kB
+├ ○ /teams/[teamId]/groups/[groupId]       1.48 kB         375 kB
+├ ○ /teams/[teamId]/groups/[groupId]/chat  1.81 kB         364 kB
+├ ○ /teams/[teamId]/members/[username]     2.41 kB         361 kB
+├ ○ /teams/[teamId]/notes                  523 B           359 kB
+└ ○ /teams/[teamId]/tasks                  72 kB           431 kB
+    └ css/83a0a2187af081ef.css             779 B
++ First Load JS shared by all              365 kB
+  ├ chunks/framework-593473e3eb3b50f5.js   45.2 kB
+  ├ chunks/main-2665fc0bcd6d1a84.js        28.7 kB
+  ├ chunks/pages/_app-bc7b04c1b778d524.js  283 kB
+  ├ chunks/webpack-df016f9d163d8f07.js     1.83 kB
+  └ css/7ece4d12a0969f56.css               6.22 kB
+
+[info] 
+λ  (Server)  server-side renders at runtime (uses getInitialProps or getServerSideProps)
+○  (Static)  automatically rendered as static HTML (uses no initial props)
+
+
+[info] Building a Cloud Function to run this application. This is needed due to:
+[info]  • Image Optimization
+[info]  • non-static route /api/hello
+[info] 
+[debug] [2023-08-08T19:54:52.587Z] Error: Command failed: npm i --omit dev --no-audit
+    at checkExecSyncError (node:child_process:826:11)
+    at execSync (node:child_process:900:15)
+    at prepareFrameworks (C:\Users\joeva\AppData\Roaming\npm\node_modules\firebase-tools\lib\frameworks\index.js:367:42)
+    at async deploy (C:\Users\joeva\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\index.js:55:13)
+[error] 
+[error] Error: An unexpected error has occurred.

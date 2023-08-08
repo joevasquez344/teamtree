@@ -1,0 +1,21 @@
+{
+  "/_app": "pages/_app.js",
+  "/404": "pages/404.html",
+  "/": "pages/index.html",
+  "/_error": "pages/_error.js",
+  "/_document": "pages/_document.js",
+  "/createteam": "pages/createteam.html",
+  "/api/hello": "pages/api/hello.js",
+  "/login": "pages/login.html",
+  "/register": "pages/register.html",
+  "/teams/[teamId]/groups/[groupId]": "pages/teams/[teamId]/groups/[groupId].html",
+  "/teams/[teamId]/chat/[username]": "pages/teams/[teamId]/chat/[username].html",
+  "/teams/[teamId]/chat": "pages/teams/[teamId]/chat.html",
+  "/teams/[teamId]/groups/[groupId]/chat": "pages/teams/[teamId]/groups/[groupId]/chat.html",
+  "/teams/[teamId]/groups": "pages/teams/[teamId]/groups.html",
+  "/teams/[teamId]/notes": "pages/teams/[teamId]/notes.html",
+  "/teams": "pages/teams.html",
+  "/teams/[teamId]/tasks": "pages/teams/[teamId]/tasks.html",
+  "/teams/[teamId]": "pages/teams/[teamId].html",
+  "/teams/[teamId]/members/[username]": "pages/teams/[teamId]/members/[username].html"
+}

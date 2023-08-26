@@ -4,6 +4,7 @@ import { useTeams } from "../../../../context/TeamsContext";
 import Skeleton from "react-loading-skeleton";
 import Members from "../../../../components/users/Members";
 import {
+  completeTask,
   createTask,
   deleteTask,
   editTask,
@@ -24,6 +25,7 @@ import TopAlert from "../../../../components/TopAlert";
 import { useEditAlert } from "../../../../hooks/alerts/useEditAlert";
 import { removeTeamMember } from "../../../../utils/api/teams";
 import useTabs from "../../../../hooks/useTabs";
+import Task from "../../../../components/tasks/Task";
 
 // Page Tasks
 // 1. On hover of task, slide out a view assigned users button
@@ -34,7 +36,7 @@ import useTabs from "../../../../hooks/useTabs";
 
 const Tasks = ({ mobileSidebarState }) => {
   const router = useRouter();
-  const { tabs, tabClick } = useTabs(["All Tasks", "My Tasks"]);
+  const { tabs, tabClick } = useTabs(["All", "Assigned", "Completed"]);
   const [tasks, setTasks] = useState(null);
   const [team, setTeam] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -262,6 +264,20 @@ const Tasks = ({ mobileSidebarState }) => {
     setAssignedUsers([]);
   };
 
+  const handleCompleteTask = async (taskId) => {
+    await completeTask(taskId);
+
+    const updatedTasks = tasks.map((task) => {
+      if (task.id === taskId) {
+        task.status = "complete";
+      }
+
+      return task;
+    });
+
+    setTasks(updatedTasks);
+  };
+
   useEffect(() => {
     getTeamTasks();
     setAuthLayout(true);
@@ -296,6 +312,8 @@ const Tasks = ({ mobileSidebarState }) => {
     }
   });
 
+  const completedTasks = tasks.filter((task) => task.status === "complete");
+
   console.log("My Tasks: ", myTasks);
 
   return (
@@ -315,33 +333,39 @@ const Tasks = ({ mobileSidebarState }) => {
         ))}
       </Feed> */}
 
-      <div className="grid grid-cols-12 bg-gray-800">
+      <div className="grid grid-cols-12 w-full bg-gray-800">
         <div
           className={` ${
-            membersMobile ? "-translate-x-[90%]  left-0 rounded-tr-xl" : "left-0 "
+            membersMobile
+              ? "-translate-x-[90%]   left-0 rounded-tr-xl"
+              : "left-0"
           }  ${
-            mobileSidebarState ? "translate-x-[90%]  right-0 rounded-tl-xl" : "right-0"
-          } z-40 border-l-gray-600  transition ease-in-out cursor-pointer duration-500 h-12  col-span-12 md:col-span-10 shadow-lg flex items-center text-gray-200 bg-gray-700 text-lg`}
+            mobileSidebarState
+              ? "translate-x-[90%]  right-0 rounded-tl-xl"
+              : "right-0"
+          } z-40  border-l-gray-600 w-screen  transition ease-in-out cursor-pointer duration-500 h-12  col-span-12 md:col-span-10  flex items-center text-gray-200 bg-gray-700 text-lg`}
         >
-          <div className="w-full relative h-full flex items-center col-span-12 md:col-span-10 md:mr-80 md:pl-5 md:pr-8">
-            <div className="hidden md:block border-r  font-semibold border-r-gray-500 pr-4">
+          <div className="w-full relative h-full flex shadow-lg items-center col-span-12 md:col-span-10 md:mr-80 md:pl-5 md:pr-8">
+            <div className="hidden md:block border-r font-semibold border-r-gray-500 pr-4">
               {team?.name} Tasks
             </div>
             <div
-              className="flex items-center space-x-3 px-4 py-1 mx-4 text-white bg-gray-800 hover rounded-sm hover:bg-gray-900 transition ease-in-out cursor-pointer duration-200"
+              className="flex items-center space-x-3 px-4 py-1 mx-4 text-white bg-gray-800 group  rounded hover:bg-gray-900 transition ease-in-out cursor-pointer duration-200"
               onClick={handleOpenCreateTask}
             >
-              <div className="rounded-full w-6 h-6 bg-gray-900 flex items-center justify-center ">
+              <div className="rounded-full w-7 h-7  group-hover:bg-gray-800 transition ease-in-out duration-200 bg-gray-900 flex items-center justify-center ">
                 <AddIcon />
               </div>
               <div className="hidden md:text-sm">Create Task</div>
             </div>
+
             {tabs.map((tab) => (
               <div
+                key={tab.id}
                 onClick={() => tabClick(tab)}
-                className={`text-sm cursor-pointer ${
-                  tab.active && "underline"
-                } hover:underline mr-4`}
+                className={`text-sm cursor-pointer py-2 px-3 hover:bg-gray-900 transition ease-in-out duration-200 rounded mr-2 ${
+                  tab.active && "bg-gray-900  "
+                }`}
               >
                 {tab.label}
               </div>
@@ -370,7 +394,7 @@ const Tasks = ({ mobileSidebarState }) => {
             membersMobile ? "-translate-x-[90%]  left-0" : "left-0"
           } ${
             mobileSidebarState ? "translate-x-[90%]  right-0" : "right-0"
-          }   z-40 border-l-gray-600 h-screen transition ease-in-out cursor-pointer duration-500`}
+          }    border-l-gray-600 h-screen transition ease-in-out cursor-pointer duration-500`}
         >
           {createTaskPopup && (
             <form className="relative p-5 bg-gray-800 border-l border-l-gray-700">
@@ -393,7 +417,6 @@ const Tasks = ({ mobileSidebarState }) => {
                     <div className="text-red-500">{taskNameInputError}</div>
                   )}
                 </div>
-                {/* <TextEditor handleEditorChange={handleEditorChange} editorText={editorText} /> */}
                 <div>
                   <textarea
                     className="p-3 w-full bg-gray-700 text-gray-200  rounded-lg outline-none"
@@ -433,6 +456,7 @@ const Tasks = ({ mobileSidebarState }) => {
                     />
                   )}
                 </div>
+
                 <button
                   className="py-2 bg-green-700 text-gray-200 rounded-lg hover:bg-green-800 transition ease-in-out cursor-pointer duration-200"
                   onClick={taskToEdit ? handleEditTask : handleCreateTask}
@@ -442,7 +466,13 @@ const Tasks = ({ mobileSidebarState }) => {
               </div>
             </form>
           )}
-
+          {deleteTaskPopup && (
+            <DeleteTaskPopup
+              close={closeDeleteTaskPopup}
+              deleteTask={handleDeleteTask}
+              task={taskToDelete}
+            />
+          )}
           <div>
             {tasks.length === 0 ? (
               <div className="flex mt-64 justify-center h-screen">
@@ -458,138 +488,55 @@ const Tasks = ({ mobileSidebarState }) => {
                   </div>
                 </div>
               </div>
-            ) : activeTab && activeTab.label === "All Tasks" ? (
+            ) : activeTab && activeTab.label === "All" ? (
               tasks.map((task) => (
-                <div
-                  onMouseOver={() => showMore(task.id)}
-                  onMouseLeave={hideMore}
-                  className={`relative hover:bg-gray-900 text-gray-200 p-5 flex items-center space-between border-b border-b-gray-600 transition ease-in-out cursor-pointer duration-200 ${
-                    inputEl === task.id && "bg-gray-900"
-                  } `}
-                >
-                  {deleteTaskPopup && (
-                    <DeleteTaskPopup
-                      close={closeDeleteTaskPopup}
-                      deleteTask={handleDeleteTask}
-                      task={taskToDelete}
-                    />
-                  )}
-                  <div className="w-full">
-                    <div className="flex items-center space-x-3 mb-1">
-                      <div className="font-semibold text-lg text-gray-200">
-                        {task.taskName}
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <AvatarIcon />
-                      </div>
-                    </div>
-                    <div className="text-gray-300">{task.taskText}</div>
-                  </div>
-
-                  <div
-                    className={`${
-                      task.status === "tasked"
-                        ? "hidden"
-                        : task.status === "in progress"
-                        ? "text-yellow-500"
-                        : task.status === "complete"
-                        ? "text-green-500"
-                        : "text-gray-200"
-                    } font-semibold cursor-pointer`}
-                  >
-                    Incomplete
-                  </div>
-                  <div
-                    className={`${
-                      hover !== task.id && "hidden"
-                    } flex items-center  rounded-md  absolute right-3 top-1  border border-black border-opacity-30 bg-gray-800 shadow-md  transition ease-in-out duration-200`}
-                  >
-                    <div
-                      onClick={() => handleOpenEditTask(task)}
-                      className="hover:bg-gray-700 h-6 flex items-center justify-center  rounded-tl-md rounded-bl-md  px-2 py-4 transition ease-in-out duration-200 cursor-pointer"
-                    >
-                      <EditIcon />
-                    </div>
-                    <div
-                      onClick={() => openDeleteTaskPopup(task)}
-                      className="hover:bg-gray-700 transition ease-in-out px-1 py-2 duration-200 cursor-pointer "
-                    >
-                      <TrashIcon />
-                    </div>
-                    <div className="hover:bg-gray-700 transition ease-in-out px-1 py-2 duration-200 cursor-pointer rounded-tr-md rounded-br-md">
-                      <MoreIcon />
-                    </div>
-                  </div>
-                </div>
+                <Task
+                  key={task.id}
+                  task={task}
+                  hover={hover}
+                  hideMore={hideMore}
+                  showMore={showMore}
+                  inputEl={inputEl}
+                  variation="all"
+                  completeTask={handleCompleteTask}
+                  openEditTask={handleOpenEditTask}
+                  openDeleteTask={openDeleteTaskPopup}
+                />
               ))
-            ) : activeTab && activeTab.label === "My Tasks" ? (
+            ) : activeTab && activeTab.label === "Assigned" ? (
               myTasks.map((task) => (
-                <div
-                  onMouseOver={() => showMore(task.id)}
-                  onMouseLeave={hideMore}
-                  className={`relative hover:bg-gray-900 text-gray-200 p-5 flex items-center space-between border-b border-b-gray-600 transition ease-in-out cursor-pointer duration-200 ${
-                    inputEl === task.id && "bg-gray-900"
-                  } `}
-                >
-                  {deleteTaskPopup && (
-                    <DeleteTaskPopup
-                      close={closeDeleteTaskPopup}
-                      deleteTask={handleDeleteTask}
-                      task={taskToDelete}
-                    />
-                  )}
-                  <div className="w-full">
-                    <div className="flex items-center space-x-3 mb-1">
-                      <div className="font-semibold text-lg text-gray-200">
-                        {task.taskName}
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <AvatarIcon />
-                      </div>
-                    </div>
-                    <div className="text-gray-300">{task.taskText}</div>
-                  </div>
-
-                  <div
-                    className={`${
-                      task.status === "tasked"
-                        ? "hidden"
-                        : task.status === "in progress"
-                        ? "text-yellow-500"
-                        : task.status === "complete"
-                        ? "text-green-500"
-                        : "text-gray-200"
-                    } font-semibold cursor-pointer`}
-                  >
-                    Incomplete
-                  </div>
-                  <div
-                    className={`${
-                      hover !== task.id && "hidden"
-                    } flex items-center  rounded-md  absolute right-3 top-1  border border-black border-opacity-30 bg-gray-800 shadow-md  transition ease-in-out duration-200`}
-                  >
-                    <div
-                      onClick={() => handleOpenEditTask(task)}
-                      className="hover:bg-gray-700 h-6 flex items-center justify-center  rounded-tl-md rounded-bl-md  px-2 py-4 transition ease-in-out duration-200 cursor-pointer"
-                    >
-                      <EditIcon />
-                    </div>
-                    <div
-                      onClick={() => openDeleteTaskPopup(task)}
-                      className="hover:bg-gray-700 transition ease-in-out px-1 py-2 duration-200 cursor-pointer "
-                    >
-                      <TrashIcon />
-                    </div>
-                    <div className="hover:bg-gray-700 transition ease-in-out px-1 py-2 duration-200 cursor-pointer rounded-tr-md rounded-br-md">
-                      <MoreIcon />
-                    </div>
-                  </div>
-                </div>
+                <Task
+                  key={task.id}
+                  task={task}
+                  hover={hover}
+                  hideMore={hideMore}
+                  showMore={showMore}
+                  inputEl={inputEl}
+                  variation="assigned"
+                  completeTask={handleCompleteTask}
+                  openEditTask={handleOpenEditTask}
+                  openDeleteTask={openDeleteTaskPopup}
+                />
               ))
-            ) : null}
+            ) : (
+              completedTasks.map((task) => (
+                <Task
+                  key={task.id}
+                  task={task}
+                  hover={hover}
+                  hideMore={hideMore}
+                  showMore={showMore}
+                  inputEl={inputEl}
+                  variation="completed"
+                  completeTask={handleCompleteTask}
+                  openEditTask={handleOpenEditTask}
+                  openDeleteTask={openDeleteTaskPopup}
+                />
+              ))
+            )}
           </div>
         </div>
-        <div className={` border-l border-l-gray-600 h-screen md:col-span-2`}>
+        <div className={`border-l border-l-gray-600 h-screen md:col-span-2`}>
           <Members team={team} removeMember={handleRemoveMember} type="chat" />
         </div>
 
@@ -745,5 +692,22 @@ const AddIcon = () => {
     </svg>
   );
 };
+
+const CheckIcon = ({ color }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    strokeWidth={1.5}
+    stroke="currentColor"
+    className={`w-5 h-5 text-${color ? color : "gray"}-400`}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M4.5 12.75l6 6 9-13.5"
+    />
+  </svg>
+);
 
 export default Tasks;

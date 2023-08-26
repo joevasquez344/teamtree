@@ -25,8 +25,8 @@ const Teams = () => {
   }
 
   return (
-    <div className="text-white bg-gray-800 w-screen h-screen  pt-36">
-      <div className="w-1/2 h-full mx-auto">
+    <div className="text-white bg-gray-800 w-screen h-screen pt-10 md:pt-36">
+      <div className="md:w-1/2 h-full mx-auto">
         {/* <div className="h-1/3 w-full border">
           <Image
             src={banner}
@@ -35,15 +35,15 @@ const Teams = () => {
             
           />
         </div> */}
-        <div className="flex border border-gray-700 rounded-lg space-x-16 p-10 bg-gray-00">
-          <div className="grid grid-cols-5 gap-8 ">
+        <div className="flex flex-wrap p-3  md:border border-gray-700 rounded-lg  md:space-x-16  md:p-10 bg-gray-800">
+          <div className=" flex  space-x-6 mx-auto md:mx-0  mb-8 ">
             {teams.map((team) => (
               <div
                 key={team.id}
                 onClick={() => routeTeam(team.id)}
-                className=""
+                className="flex flex-col "
               >
-                <div className="h-36 w-36 flex items-center shadow-lg justify-center bg-gray-900 rounded-lg text-4xl font-bold transition ease-in-out cursor-pointer hover:bg-gray-700 duration-200">
+                <div className="h-24 w-24   md:h-36 md:w-36 flex items-center shadow-lg justify-center bg-gray-900 rounded-lg text-4xl font-bold transition ease-in-out cursor-pointer hover:bg-gray-700 duration-200">
                   {team.name.split("")[0].toUpperCase()}
                 </div>
                 <div className="text-center text-gray-400 mt-2 font-semibold">
@@ -52,7 +52,10 @@ const Teams = () => {
               </div>
             ))}
           </div>
-          <div onClick={() => router.push('/createteam')} className="h-36 w-36 flex items-center group justify-center bg-black text-green-600 rounded-lg text-4xl transition ease-in-out cursor-pointer hover:bg-green-600 duration-200">
+          <div
+            onClick={() => router.push("/createteam")}
+            className=" h-24 w-24 md:h-36 ml-4 md:w-36 flex items-center group justify-center bg-black text-green-600 rounded-lg text-4xl transition ease-in-out cursor-pointer hover:bg-green-600 duration-200"
+          >
             <div className="group-hover:text-white transition ease-in-out  duration-200">
               <PlusIcon />
             </div>

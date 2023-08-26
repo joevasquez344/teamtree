@@ -189,7 +189,7 @@ const Sidebar = ({ teams }) => {
           //       <ExpandButton height="4" width="4" />
           //     )} */}
           // </div>
-          <div className="relative">
+          <div className="relative border-t border-t-gray-700">
             <div className="shadow-lg h-12 mb-3 flex items-center justify-between cursor-pointer pr-4 relative">
               <div
                 onClick={toggleTeamsDropdown}

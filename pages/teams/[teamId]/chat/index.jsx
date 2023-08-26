@@ -9,7 +9,7 @@ import Skeleton from "react-loading-skeleton";
 import { useRouter } from "next/router";
 import { removeTeamMember } from "../../../../utils/api/teams";
 
-const TeamChat = () => {
+const TeamChat = ({ mobileSidebarState }) => {
   const router = useRouter();
   const ref = useRef(null);
   const { setAuthLayout, authUser } = useAuth();
@@ -32,6 +32,7 @@ const TeamChat = () => {
   const [input, setInput] = useState("");
   const [task, setTask] = useState(false);
   const [replyTo, setReplyTo] = useState(null);
+  const [membersMobile, setMembersMobile] = useState(false);
 
   const handleTaskDesignation = () => {
     setTask(task ? false : true);
@@ -73,7 +74,7 @@ const TeamChat = () => {
   useEffect(() => {
     setError(false);
     getTeam();
-    
+
     setAuthLayout(true);
   }, [router.query.teamId]);
   console.log("Reply To: ", replyTo);
@@ -86,10 +87,18 @@ const TeamChat = () => {
   }
 
   return (
-    <div className="bg-gray-700">
-      <div className="h-12 w-full shadow-md px-5 flex items-center text-gray-200 text-lg font-semibold">
+    <div className="bg-gray-800">
+      <div
+        className={` ${
+          membersMobile ? "-translate-x-[90%]   left-0 rounded-tr-xl" : "left-0"
+        }  ${
+          mobileSidebarState
+            ? "translate-x-[90%]  right-0 rounded-tl-xl"
+            : "right-0"
+        } h-12 z-40 w-full shadow-md bg-gray-700 px-5 flex items-center text-gray-200 text-lg font-semibold transition ease-in-out cursor-pointer duration-500`}
+      >
         {teamLoading ? (
-          <div className="w-full h-full p-1">
+          <div className="w-full h-full p-1 ">
             <div className="h-8 w-64">
               <Skeleton
                 className="h-full w-full"
@@ -106,10 +115,38 @@ const TeamChat = () => {
         ) : (
           <div>{team.name} Chat</div>
         )}
+        <div className="absolute right-5 md:hidden">
+          <svg
+            onClick={() => setMembersMobile(true)}
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-5 h-5"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"
+            />
+          </svg>
+        </div>
       </div>
       <div className="grid grid-cols-12">
-        <div className="col-span-10 overflow-y-scroll no-scrollbar h-screen relative">
-          <Chat messages={teamChat?.messages} reply={handleFocusInput} />
+        <div
+          className={`${
+            membersMobile ? "-translate-x-[90%]  left-0 " : "left-0"
+          }  ${
+            mobileSidebarState ? "translate-x-[90%]  right-0 " : "right-0"
+          } col-span-12 md:col-span-10 bg-gray-700  overflow-y-scroll no-scrollbar h-screen relative transition ease-in-out duration-500`}
+        >
+          <Chat
+            messages={teamChat?.messages}
+            reply={handleFocusInput}
+            membersMobile={membersMobile}
+            mobileSidebarState={mobileSidebarState}
+          />
 
           <div
             className={`absolute bottom-24 w-full ${
@@ -185,8 +222,23 @@ const TeamChat = () => {
             </div>
           </div>
         </div>
-        <div className="border-l border-l-gray-600 h-screen col-span-2">
+        <div className="border-l border-l-gray-600 h-screen md:col-span-2">
           <Members team={team} type="chat" removeMember={handleRemoveMember} />
+        </div>
+
+        <div
+          className={` md:hidden bg-gray-800 absolute top-0 ${
+            !membersMobile ? "translate-x-[100%] w-[90%] right-0" : "right-0"
+          }  w-[90%] z-40 h-screen transition ease-in-out cursor-pointer duration-500 `}
+        >
+          <div className=" ml-3 h-full ">
+            <Members
+              team={team}
+              removeMember={handleRemoveMember}
+              type="chat"
+              hideMembers={() => setMembersMobile(false)}
+            />
+          </div>
         </div>
       </div>
     </div>

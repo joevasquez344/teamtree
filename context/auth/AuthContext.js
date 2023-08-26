@@ -113,7 +113,7 @@ export function AuthProvider({ children }) {
       if (user.id) {
         setAuthLayout(true);
         setAuthUser(user);
-        router.push(`/teams/${teams[0]?.id}/tasks`);
+        router.push(`/teams`);
       }
     }
   };

@@ -38,7 +38,7 @@ const Members = ({ team, type, removeMember, hideMembers }) => {
   };
 
   return (
-    <div className="h-full rounded-tl-xl bg-gray-700 py-7">
+    <div className="h-full rounded-tl-xl md:rounded-none bg-gray-700 py-7">
       <div className="flex items-center justify-between  px-4 ">
         <div className="flex items-center text-xs text-gray-300  space-x-2">
           <div>MEMBERS</div> <div>-</div> <div>{team.members?.length}</div>

@@ -326,14 +326,21 @@ const removeTaskFromUsers = async (task, users) => {
   }
 };
 
+const completeTask = async (taskId) => {
+  const taskRef = doc(db, `tasks/${taskId}`);
+  const completed = await updateDoc(taskRef, { status: "complete" });
+  console.log("Completed: ", completed);
+};
+
 export {
   createTask,
   deleteTask,
   editTask,
+  completeTask,
   getUsersTasks,
   fetchTasksByTeam,
   fetchTasksByGroup,
   getTaskDetails,
   getUsersTask,
-  markNotificationsAsOld
+  markNotificationsAsOld,
 };

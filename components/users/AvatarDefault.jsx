@@ -2,7 +2,7 @@ import React from "react";
 
 const AvatarDefault = ({color}) => {
   return (
-    <div className={`rounded-full w-10 h-10 flex-shrink-0 flex items-center justify-center bg-${color}-500`}>
+    <div className={`rounded-full w-10 h-10 md:w-10 md:h-10 flex-shrink-0 flex items-center justify-center bg-${color}-500`}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="white"

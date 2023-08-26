@@ -17,7 +17,7 @@ import Message from "../../Message/Message";
 
 // Todos
 //  1. Capture live updates to reflect on clients for a user editing their message
-const Chat = ({ messages, reply }) => {
+const Chat = ({ messages, reply, membersMobile, mobileSidebarState }) => {
   // const [hover, setHover] = useState(-1);
   const [inputEl, setInputEl] = useState(-1);
   // const [input, setInput] = useState("");
@@ -129,7 +129,9 @@ const Chat = ({ messages, reply }) => {
           // }
         />
       ) : (
-        <div className="relative flex flex-col space-y-3 pt-2  h-screen overflow-y-scroll no-scrollbar pb-64">
+        <div
+          className={` relative flex flex-col  space-y-3 pt-2 transition ease-in-out cursor-pointer duration-500  h-screen overflow-y-scroll no-scrollbar pb-64`}
+        >
           <div ref={chatStartRef} />
           <MessageDeletePrompt
             deletePrompt={deletePrompt}
@@ -143,6 +145,7 @@ const Chat = ({ messages, reply }) => {
               <>
                 {item[1].map((message) => (
                   <Message
+                    key={message.id}
                     message={message}
                     inputEl={inputEl}
                     setInputEl={setInputEl}

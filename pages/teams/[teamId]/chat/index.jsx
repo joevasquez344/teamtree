@@ -149,7 +149,7 @@ const TeamChat = ({ mobileSidebarState }) => {
           />
 
           <div
-            className={`sticky bottom-24  w-full ${
+            className={`sticky bottom-24 h-52 w-full ${
               replyTo === null ? "pt-5" : "pt-3"
             }  pb-10  px-7 bg-gray-700 border-t border-t-gray-600 z-30 `}
           >
@@ -164,7 +164,7 @@ const TeamChat = ({ mobileSidebarState }) => {
                 onSubmit={replyTo === null ? createMessage : createReply}
                 className={`${
                   replyTo !== null && "border border-green-500"
-                } h-full flex items-center bg-gray-600`}
+                }  flex items-center bg-gray-600`}
               >
                 {replyTo === null && (
                   <div className="ml-3">

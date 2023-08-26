@@ -48,7 +48,7 @@ const Message = ({
       key={message.id}
       onMouseOver={() => showMore(message.id)}
       onMouseLeave={hideMore}
-      className={`group hover:bg-gray-900 ${message?.type === "task" && " "}  ${
+      className={`group md:hover:bg-gray-900 ${message?.type === "task" && " "}  ${
         inputEl === message.id && "bg-gray-900"
       } transition ease-in-out w-[80%] md:w-[90%] duration-200 px-3 md:px-5 py-1 md:py-3`}
     >

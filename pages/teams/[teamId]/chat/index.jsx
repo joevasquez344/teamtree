@@ -149,7 +149,7 @@ const TeamChat = ({ mobileSidebarState }) => {
           />
 
           <div
-            className={`sticky bottom-24 w-full ${
+            className={`sticky bottom-24  w-full ${
               replyTo === null ? "pt-5" : "pt-3"
             }  pb-10  px-7 bg-gray-700 border-t border-t-gray-600 z-30 `}
           >

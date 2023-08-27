@@ -89,16 +89,19 @@ const TeamChat = ({ mobileSidebarState }) => {
   return (
     <div className="bg-gray-800">
       <div
-        className={` ${
-          membersMobile ? "-translate-x-[90%]   left-0 rounded-tr-xl" : "left-0"
+        // style={{boxShadow: "10px 5px -5px 10px black"}}
+        className={`${
+          membersMobile
+            ? "-translate-x-[90%]   left-0 rounded-tr-xl"
+            : "left-0 "
         }  ${
           mobileSidebarState
-            ? "translate-x-[90%]  right-0 rounded-tl-xl"
+            ? "md:translate-x-[60%]  translate-x-[90%]  right-0 rounded-tl-xl "
             : "right-0"
-        } h-12 z-40 w-full shadow-md bg-gray-700 px-5 flex items-center text-gray-200 text-lg font-semibold transition ease-in-out cursor-pointer duration-500`}
+        } h-12  w-full z-50 border-b border-b-gray-600 bg-gray-700 px-5 flex items-center text-gray-200 text-lg font-semibold transition ease-in-out duration-500`}
       >
         {teamLoading ? (
-          <div className="w-full h-full p-1 ">
+          <div className="w-full h-full p-1">
             <div className="h-8 w-64">
               <Skeleton
                 className="h-full w-full"
@@ -113,7 +116,7 @@ const TeamChat = ({ mobileSidebarState }) => {
             </div>
           </div>
         ) : (
-          <div>{team.name} Chat</div>
+          <div className="">{team.name} Chat</div>
         )}
         <div className="absolute right-5 md:hidden">
           <svg
@@ -139,7 +142,7 @@ const TeamChat = ({ mobileSidebarState }) => {
             membersMobile ? "-translate-x-[90%]  left-0 " : "left-0"
           }  ${
             mobileSidebarState ? "translate-x-[90%]  right-0 " : "right-0"
-          } col-span-12 md:col-span-10 bg-gray-700  overflow-y-scroll no-scrollbar h-screen relative transition ease-in-out duration-500`}
+          } col-span-12 md:col-span-8 lg:col-span-8 xl:col-span-9 2xl:col-span-10 bg-gray-700  overflow-y-scroll no-scrollbar h-screen relative transition ease-in-out duration-500`}
         >
           <Chat
             messages={teamChat?.messages}
@@ -222,7 +225,11 @@ const TeamChat = ({ mobileSidebarState }) => {
             </div>
           </div>
         </div>
-        <div className="border-l border-l-gray-600 h-screen md:col-span-2">
+        <div
+          className={`hidden border-l border-l-gray-600 h-screen md:block md:col-span-4 lg:col-span-4 xl:col-span-3 2xl:col-span-2 transition ease-in-out  duration-500 ${
+            mobileSidebarState ? "translate-x-[90%]  right-0 " : "right-0"
+          } `}
+        >
           <Members team={team} type="chat" removeMember={handleRemoveMember} />
         </div>
 

@@ -36,10 +36,10 @@ function MyApp({ Component, pageProps }) {
             <Navbar mobileSidebar={mobileSidebar} openMobileSidebar={openMobileSidebar} closeMobileSidebar={closeMobileSidebar} />
           </div>
           <div className=" grid grid-cols-12">
-            {router.query.teamId && <SidebarContainer mobileSidebar={mobileSidebar} />}
+            {router.query.teamId && <SidebarContainer closeSidebar={closeMobileSidebar} mobileSidebar={mobileSidebar} />}
 
             <div
-              className="relative col-span-12 sm:col-span-9
+              className="relative col-span-12 lg:col-span-9
               2xl:col-span-10 "
             >
               {/* <Header /> */}

@@ -157,7 +157,7 @@ const Sidebar = ({ teams }) => {
     <ProtectedComponent>
       <div
         //  style={{backgroundColor: "#23272a"}}
-        className="relative bg-gray-800 flex flex-col w-full h-screen  "
+        className=" bg-gray-800 flex flex-col w-full h-screen  "
       >
         {groupsLoading ? (
           <div className="mx-5">
@@ -276,6 +276,7 @@ const Sidebar = ({ teams }) => {
         <div className="p-3 flex flex-col space-y-3  mb-3 text-white rounded-sm">
           {teamTabs.map((tab) => (
             <div
+            key={tab.id}
               onClick={() => handleTabClick(tab)}
               className="py-2 px-4 flex items-center justify-between bg-gray-900 rounded-sm hover:bg-black transition ease-in-out cursor-pointer duration-200"
             >

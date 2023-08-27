@@ -136,7 +136,7 @@ const Navbar = ({ mobileSidebar, openMobileSidebar, closeMobileSidebar }) => {
         <div
           className={`relative flex items-center justify-end bg-gray-800   h-16`}
         >
-          <div className="md:hidden absolute left-5">
+          <div className="lg:hidden absolute left-5">
             {mobileSidebar ? (
               <div onClick={closeMobileSidebar}>
                 <MenuIcon />

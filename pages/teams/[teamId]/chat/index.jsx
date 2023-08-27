@@ -167,7 +167,7 @@ const TeamChat = ({ mobileSidebarState }) => {
                 onSubmit={replyTo === null ? createMessage : createReply}
                 className={`${
                   replyTo !== null && "border border-green-500"
-                }  flex items-center bg-gray-700 md:bg-gray-600`}
+                }  flex items-center bg-gray-700 md:bg-gray-600 relative`}
               >
                 {/* {replyTo === null && (
                   <div className="ml-3">
@@ -208,7 +208,7 @@ const TeamChat = ({ mobileSidebarState }) => {
                       : `Type ${task ? "Task" : "Message"}`
                   }
                 />
-             
+             <div className="md:hidden absolute right-[20px] rounded-full bg-gray-900 px-5 h-full flex items-center justify-center text-white font-semibold">Send</div>
               </form>
               {replyTo !== null && (
                 <div

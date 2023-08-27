@@ -142,7 +142,7 @@ const TeamChat = ({ mobileSidebarState }) => {
             membersMobile ? "-translate-x-[90%]  left-0 " : "left-0"
           }  ${
             mobileSidebarState ? "translate-x-[90%]  right-0 " : "right-0"
-          } col-span-12 md:col-span-8 lg:col-span-8 xl:col-span-9 2xl:col-span-10 bg-gray-700  overflow-y-scroll no-scrollbar h-screen relative transition ease-in-out duration-300`}
+          } col-span-12 h-screen md:col-span-8 lg:col-span-8 xl:col-span-9 2xl:col-span-10 bg-gray-700  overflow-y-scroll no-scrollbar  relative transition ease-in-out duration-300`}
         >
           <Chat
             messages={teamChat?.messages}
@@ -152,9 +152,9 @@ const TeamChat = ({ mobileSidebarState }) => {
           />
 
           <div
-            className={`sticky bottom-20 h-48 md:h-0 w-full ${
-              replyTo === null ? "pt-5" : "pt-3"
-            }  pb-24  px-7 bg-gray-700 border-t border-t-gray-600 z-30 `}
+            className={`absolute bottom-[112px]   ${
+              replyTo === null ? "md:pt-5" : "md:pt-3"
+            }   md:px-7 md:pb-5 mb-3 w-full   md:border-t md:border-t-gray-600 z-30 `}
           >
             <div className="h-full">
               {replyTo !== null && (
@@ -167,9 +167,9 @@ const TeamChat = ({ mobileSidebarState }) => {
                 onSubmit={replyTo === null ? createMessage : createReply}
                 className={`${
                   replyTo !== null && "border border-green-500"
-                }  flex items-center bg-gray-600`}
+                }  flex items-center bg-gray-700 md:bg-gray-600`}
               >
-                {replyTo === null && (
+                {/* {replyTo === null && (
                   <div className="ml-3">
                     <Tooltip
                       placement="bottom"
@@ -194,13 +194,13 @@ const TeamChat = ({ mobileSidebarState }) => {
                       </div>
                     </Tooltip>
                   </div>
-                )}
+                )} */}
 
                 <input
                   ref={ref}
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  className="w-full py-3 px-5 bg-gray-600  outline-none text-gray-400"
+                  className="w-full py-2 md:py-3 mx-5 px-5 rounded-full bg-gray-800 md:bg-gray-600  outline-none text-gray-400"
                   type="text"
                   placeholder={
                     replyTo !== null
@@ -208,11 +208,7 @@ const TeamChat = ({ mobileSidebarState }) => {
                       : `Type ${task ? "Task" : "Message"}`
                   }
                 />
-                {task && (
-                  <div className="mx-3 text-sm border border-green-500 text-green-500 px-5 rounded-sm">
-                    Task
-                  </div>
-                )}
+             
               </form>
               {replyTo !== null && (
                 <div

@@ -106,7 +106,7 @@ const MobileSidebar = ({ closeSidebar }) => {
 
   return (
     <div className="bg-gray-800 pr-3">
-      <div className="flex bg-gray-800 h-screen ">
+      <div className="flex bg-gray-800 ">
         <div className="flex bg-gray-800 flex-col p-3 ">
           {" "}
           {teams?.map((team) => (

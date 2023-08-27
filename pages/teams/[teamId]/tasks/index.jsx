@@ -343,7 +343,7 @@ const Tasks = ({ mobileSidebarState }) => {
             mobileSidebarState
               ? "md:translate-x-[60%]  translate-x-[90%]  right-0 rounded-tl-xl"
               : "right-0"
-          }  z-40  border-l-gray-600 w-screen  transition ease-in-out cursor-pointer duration-500 h-12  col-span-12 md:col-span-10  flex items-center text-gray-200 bg-gray-700 text-lg`}
+          }  z-40  border-l-gray-600 w-screen  transition ease-in-out cursor-pointer duration-300 h-12  col-span-12 md:col-span-10  flex items-center text-gray-200 bg-gray-700 text-lg`}
         >
           <div className="w-full relative h-full flex shadow-lg items-center col-span-12 md:col-span-10 md:pl-5 md:pr-8">
             <div className="hidden md:block border-r font-semibold border-r-gray-500 pr-4">
@@ -394,7 +394,7 @@ const Tasks = ({ mobileSidebarState }) => {
             membersMobile ? "-translate-x-[90%]  left-0" : "left-0"
           } ${
             mobileSidebarState ? "translate-x-[90%]  right-0" : "right-0"
-          }  col-span-12 md:col-span-8 lg:col-span-8 xl:col-span-9 2xl:col-span-10  border-l-gray-600 h-screen transition ease-in-out cursor-pointer duration-500`}
+          }  col-span-12 md:col-span-8 lg:col-span-8 xl:col-span-9 2xl:col-span-10  border-l-gray-600 h-screen transition ease-in-out cursor-pointer duration-300`}
         >
           {createTaskPopup && (
             <form className="relative p-5 bg-gray-800 border-l border-l-gray-700">
@@ -537,7 +537,7 @@ const Tasks = ({ mobileSidebarState }) => {
           </div>
         </div>
         <div
-          className={`hidden border-l border-l-gray-600 h-screen md:block md:col-span-4 lg:col-span-4 xl:col-span-3 2xl:col-span-2 transition ease-in-out  duration-500 ${
+          className={`hidden border-l border-l-gray-600 h-screen md:block md:col-span-4 lg:col-span-4 xl:col-span-3 2xl:col-span-2 transition ease-in-out  duration-300 ${
             mobileSidebarState ? "translate-x-[90%]  right-0 " : "right-0"
           } `}
         >
@@ -547,7 +547,7 @@ const Tasks = ({ mobileSidebarState }) => {
         <div
           className={` md:hidden  absolute ${
             !membersMobile ? "translate-x-[100%] w-[90%] right-0" : "right-0"
-          }  w-[90%] z-40 h-screen transition  ease-in-out cursor-pointer duration-500 `}
+          }  w-[90%] z-40 h-screen transition  ease-in-out cursor-pointer duration-300 `}
         >
           <div className=" ml-3 h-full ">
             <Members

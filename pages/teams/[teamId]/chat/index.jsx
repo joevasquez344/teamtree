@@ -98,7 +98,7 @@ const TeamChat = ({ mobileSidebarState }) => {
           mobileSidebarState
             ? "md:translate-x-[60%]  translate-x-[90%]  right-0 rounded-tl-xl "
             : "right-0"
-        } h-12  w-full z-50 border-b border-b-gray-600 bg-gray-700 px-5 flex items-center text-gray-200 text-lg font-semibold transition ease-in-out duration-500`}
+        } h-12  w-full z-50 border-b border-b-gray-600 bg-gray-700 px-5 flex items-center text-gray-200 text-lg font-semibold transition ease-in-out duration-300`}
       >
         {teamLoading ? (
           <div className="w-full h-full p-1">
@@ -142,7 +142,7 @@ const TeamChat = ({ mobileSidebarState }) => {
             membersMobile ? "-translate-x-[90%]  left-0 " : "left-0"
           }  ${
             mobileSidebarState ? "translate-x-[90%]  right-0 " : "right-0"
-          } col-span-12 md:col-span-8 lg:col-span-8 xl:col-span-9 2xl:col-span-10 bg-gray-700  overflow-y-scroll no-scrollbar h-screen relative transition ease-in-out duration-500`}
+          } col-span-12 md:col-span-8 lg:col-span-8 xl:col-span-9 2xl:col-span-10 bg-gray-700  overflow-y-scroll no-scrollbar h-screen relative transition ease-in-out duration-300`}
         >
           <Chat
             messages={teamChat?.messages}
@@ -226,7 +226,7 @@ const TeamChat = ({ mobileSidebarState }) => {
           </div>
         </div>
         <div
-          className={`hidden border-l border-l-gray-600 h-screen md:block md:col-span-4 lg:col-span-4 xl:col-span-3 2xl:col-span-2 transition ease-in-out  duration-500 ${
+          className={`hidden border-l border-l-gray-600 h-screen md:block md:col-span-4 lg:col-span-4 xl:col-span-3 2xl:col-span-2 transition ease-in-out  duration-300 ${
             mobileSidebarState ? "translate-x-[90%]  right-0 " : "right-0"
           } `}
         >
@@ -236,7 +236,7 @@ const TeamChat = ({ mobileSidebarState }) => {
         <div
           className={` md:hidden bg-gray-800 absolute top-0 ${
             !membersMobile ? "translate-x-[100%] w-[90%] right-0" : "right-0"
-          }  w-[90%] z-40 h-screen transition ease-in-out cursor-pointer duration-500 `}
+          }  w-[90%] z-40 h-screen transition ease-in-out cursor-pointer duration-300 `}
         >
           <div className=" ml-3 h-full ">
             <Members

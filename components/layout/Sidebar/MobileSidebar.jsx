@@ -144,7 +144,7 @@ const MobileSidebar = ({ closeSidebar }) => {
             </div>
           ))}
         </div>
-        <div className=" relative bg-gray-700 w-full  flex flex-col justify-between h-[calc(100vh-100px)] rounded-xl text-gray-200 font-semibold ">
+        <div className=" relative bg-gray-700 w-full  flex flex-col justify-between h-[calc(100vh-180px)] rounded-xl text-gray-200 font-semibold ">
           <div className=" flex items-center justify-between py-2 px-3">
             <div> {team?.name}</div>
             <div

@@ -17,6 +17,11 @@
 }
 
 body {
+  height: 100%;
+  position: fixed;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,

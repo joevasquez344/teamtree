@@ -83,14 +83,14 @@ const TeamChat = ({ mobileSidebarState }) => {
   console.log("Reply To: ", replyTo);
   if (error) {
     return (
-      <div className="w-full h-screen flex justify-center mt-96">
+      <div className="w-full h-[calc(100%-64px)] flex justify-center mt-96">
         <div className="text-gray-300 text-3xl">{error}</div>
       </div>
     );
   }
 
   return (
-    <div className="bg-gray-800">
+    <div className="bg-gray-800 ">
       <div
         // style={{boxShadow: "10px 5px -5px 10px black"}}
         className={`${
@@ -145,7 +145,7 @@ const TeamChat = ({ mobileSidebarState }) => {
             membersMobile ? "-translate-x-[90%]  left-0 " : "left-0"
           }  ${
             mobileSidebarState ? "translate-x-[90%]  right-0 " : "right-0"
-          } col-span-12   md:col-span-8 lg:col-span-8   xl:col-span-9 2xl:col-span-10 bg-gray-700 h-screen  overflow-y-scroll no-scrollbar  relative transition ease-in-out duration-300`}
+          } col-span-12   md:col-span-8 lg:col-span-8   xl:col-span-9 2xl:col-span-10 bg-gray-700 h-full  overflow-y-scroll no-scrollbar  relative transition ease-in-out duration-300`}
         >
           <Chat
             messages={teamChat?.messages}
@@ -214,7 +214,7 @@ const TeamChat = ({ mobileSidebarState }) => {
         <div
           className={` md:hidden bg-gray-800 absolute top-0 ${
             !membersMobile ? "translate-x-[100%] w-[90%] right-0" : "right-0"
-          }  w-[90%] z-40 h-[100%] transition ease-in-out cursor-pointer duration-300 `}
+          }  w-[90%] z-40 h-[calc(100%-64px)]  transition ease-in-out cursor-pointer duration-300 `}
         >
           <div className=" ml-3 h-full ">
             <Members

@@ -6,7 +6,7 @@ const ChatHeader = ({ setMembersMobile }) => {
   const { teamLoading, team } = useTeams();
 
   return (
-    <div className="flex items-center justify-between">
+    <div className="flex items-center w-full justify-between ">
       {teamLoading ? (
         <div className="w-full h-full p-1">
           <div className="h-8 w-64">

@@ -46,13 +46,13 @@ const Members = ({ team, type, removeMember, hideMembers }) => {
   };
 
   return (
-    <div className=" border relative h-full rounded-tl-xl md:rounded-none bg-gray-700 py-7">
+    <div className="  relative h-full rounded-tl-xl md:rounded-none bg-gray-700 py-7">
       <Popup
         overlayStyles="bg-black opacity-70 block sm:hidden "
         closePopup={closePopup}
         popup={popup}
         styles={`${
-          popup ? "-bottom-[16px]" : " -bottom-[400px]"
+          popup ? "-bottom-[64px]" : " -bottom-[400px]"
         } block sm:hidden  w-screen -left-[15%] bg-gray-800 rounded-tl-lg rounded-tr-lg shadow-lg transition ease-in-out duration-500`}
       >
         <div className="relative block sm:hidden">

@@ -23,7 +23,7 @@ const ChatBar = ({
 
   return (
     <div
-      className={`z-40 w-full fixed bottom-0 md:bottom-0 md:h-[100px] md:px-7 md:pt-5 md:pb-5 py-3 border-t border-t-gray-600 bg-gray-700  md:border-t md:border-t-gray-600 ${styles.container}   `}
+      className={`z-40 w-full absolute bottom-0 md:h-[100px] md:px-7 md:pt-5 md:pb-5 py-3 border-t border-t-gray-600 bg-gray-700  md:border-t md:border-t-gray-600 ${styles.container}   `}
     >
       <form
         onSubmit={replyTo === null ? createMessage : createReply}

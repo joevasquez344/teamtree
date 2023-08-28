@@ -23,7 +23,7 @@ const ChatContainer = ({
         membersMobile ? "-translate-x-[90%]  left-0 " : "left-0"
       }  ${
         mobileSidebarState ? "translate-x-[90%]  right-0 " : "right-0"
-      } col-span-12   md:col-span-8 lg:col-span-8   xl:col-span-9 2xl:col-span-10 bg-gray-700   overflow-y-scroll no-scrollbar  relative transition ease-in-out duration-300`}
+      } col-span-12 h-[calc(100vh-115px)]  relative   md:col-span-8 lg:col-span-8  xl:col-span-9 2xl:col-span-10 bg-gray-700   transition ease-in-out duration-300`}
     >
       <Chat
         messages={teamChat?.messages}
@@ -32,7 +32,7 @@ const ChatContainer = ({
         mobileSidebarState={mobileSidebarState}
       />
 
-      {/* <ChatBar
+      <ChatBar
         replyTo={replyTo}
         createMessage={createMessage}
         createReply={createReply}
@@ -41,7 +41,7 @@ const ChatContainer = ({
         input={input}
         setInput={setInput}
         task={task}
-      /> */}
+      />
     </div>
   );
 };

@@ -30,7 +30,7 @@ function MyApp({ Component, pageProps }) {
       </div> */}
         <div
           //  style={{backgroundColor: "#2c2f33"}}
-          className="fixed bg-gray-900 w-full max-h-screen  "
+          className="fixed w-full bg-gray-700"
         >
           <div className="">
             <Navbar mobileSidebar={mobileSidebar} openMobileSidebar={openMobileSidebar} closeMobileSidebar={closeMobileSidebar} />
@@ -39,8 +39,8 @@ function MyApp({ Component, pageProps }) {
             {router.query.teamId && <SidebarContainer closeSidebar={closeMobileSidebar} mobileSidebar={mobileSidebar} />}
 
             <div
-              className="relative  h-[calc(100%-64px)] col-span-12 lg:col-span-9
-              2xl:col-span-10 "
+              className="  col-span-12 lg:col-span-9
+              2xl:col-span-10  "
             >
               {/* <Header /> */}
               <Component {...pageProps} mobileSidebarState={mobileSidebar} />

@@ -94,7 +94,7 @@ const TeamChat = ({ mobileSidebarState }) => {
   }
 
   return (
-    <div className="bg-gray-800 border border-red-500 h-full overflow-y-scroll">
+    <div className="bg-gray-800   relative ">
       <div
         // style={{boxShadow: "10px 5px -5px 10px black"}}
         className={`${
@@ -105,13 +105,13 @@ const TeamChat = ({ mobileSidebarState }) => {
           mobileSidebarState
             ? "md:translate-x-[60%]  translate-x-[90%]  right-0 rounded-tl-xl "
             : "right-0"
-        } h-12  w-full z-50 border-b border-b-gray-600 bg-gray-700 px-5 flex items-center text-gray-200 text-lg font-semibold transition ease-in-out duration-300`}
+        } h-12 sticky top-0 z-40 w-full  border-b border-b-gray-600 bg-gray-700 px-5 flex items-center text-gray-200 text-lg font-semibold transition ease-in-out duration-300`}
       >
         <ChatHeader setMembersMobile={setMembersMobile} />
 
  
       </div>
-      <div className="grid grid-cols-12 h-[calc(100%-48px)] border">
+      <div className="grid grid-cols-12 ">
         <ChatContainer
           membersMobile={membersMobile}
           mobileSidebarState={mobileSidebarState}

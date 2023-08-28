@@ -46,7 +46,7 @@ const Members = ({ team, type, removeMember, hideMembers }) => {
   };
 
   return (
-    <div className="relative h-[calc(100%-64px)] rounded-tl-xl md:rounded-none bg-gray-700 py-7">
+    <div className="relative h-[100%] rounded-tl-xl md:rounded-none bg-gray-700 py-7">
       <Popup
         overlayStyles="bg-black opacity-70 block sm:hidden "
         closePopup={closePopup}

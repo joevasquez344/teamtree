@@ -30,7 +30,7 @@ function MyApp({ Component, pageProps }) {
       </div> */}
         <div
           //  style={{backgroundColor: "#2c2f33"}}
-          className="fixed bg-gray-900 w-full h-screen"
+          className="fixed bg-gray-900 w-full max-h-screen  "
         >
           <div className="">
             <Navbar mobileSidebar={mobileSidebar} openMobileSidebar={openMobileSidebar} closeMobileSidebar={closeMobileSidebar} />

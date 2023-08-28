@@ -94,7 +94,7 @@ const TeamChat = ({ mobileSidebarState }) => {
   }
 
   return (
-    <div className="bg-gray-800 ">
+    <div className="bg-gray-800 border border-red-500 h-full overflow-y-scroll">
       <div
         // style={{boxShadow: "10px 5px -5px 10px black"}}
         className={`${
@@ -111,7 +111,7 @@ const TeamChat = ({ mobileSidebarState }) => {
 
  
       </div>
-      <div className="grid grid-cols-12">
+      <div className="grid grid-cols-12 h-[calc(100%-48px)] border">
         <ChatContainer
           membersMobile={membersMobile}
           mobileSidebarState={mobileSidebarState}

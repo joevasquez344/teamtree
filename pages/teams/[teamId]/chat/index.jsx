@@ -214,7 +214,7 @@ const TeamChat = ({ mobileSidebarState }) => {
         <div
           className={` md:hidden bg-gray-800 absolute top-0 ${
             !membersMobile ? "translate-x-[100%] w-[90%] right-0" : "right-0"
-          }  w-[90%] z-40 h-screen transition ease-in-out cursor-pointer duration-300 `}
+          }  w-[90%] z-40 h-[100%] transition ease-in-out cursor-pointer duration-300 `}
         >
           <div className=" ml-3 h-full ">
             <Members

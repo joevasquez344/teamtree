@@ -19,8 +19,13 @@
     }
   }
 
-html {
+  html {
+    overflow: hidden;
+    width: 100%;
+  }
+  
+  body {
+    height: 100%;
+    position: fixed;
     overflow-y: scroll;
-    /* font-family:Arial, Helvetica, sans-serif; */
-    /* letter-spacing: .8px; */
-}
+  }

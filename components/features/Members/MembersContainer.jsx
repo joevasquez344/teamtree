@@ -16,9 +16,9 @@ const MembersContainer = ({handleRemoveMember, mobileSidebarState, membersMobile
       </div>
 
       <div
-        className={` md:hidden bg-gray-800 absolute top-0  ${
+        className={` md:hidden bg-gray-800 absolute top-0 rounded-bl-lg ${
           !membersMobile ? "translate-x-[100%] w-[90%] right-0" : "right-0"
-        }  w-[90%] z-40 h-[calc(100%-64px)]  transition ease-in-out cursor-pointer duration-300 `}
+        }  w-[90%] z-40 h-[calc(100%-112px)]  transition ease-in-out cursor-pointer duration-300 `}
       >
         <div className=" ml-3 h-full ">
           <Members

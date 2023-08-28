@@ -130,7 +130,7 @@ const Chat = ({ messages, reply, membersMobile, mobileSidebarState }) => {
         />
       ) : (
         <div
-          className={`flex flex-col space-y-3 transition ease-in-out cursor-pointer absolute bottom-0 top-0 right-0 left-0 h-full overflow-y-scroll no-scrollbar   duration-500 pb-64 md:pb-64`}
+          className={`flex flex-col space-y-3 transition ease-in-out cursor-pointer absolute bottom-0 top-0 right-0 left-0 h-full overflow-y-scroll no-scrollbar   duration-500 pb-32 md:pb-64`}
         >
           <div ref={chatStartRef} />
           <MessageDeletePrompt

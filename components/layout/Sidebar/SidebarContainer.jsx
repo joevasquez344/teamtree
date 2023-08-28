@@ -40,7 +40,7 @@ const SidebarContainer = ({ mobileSidebar, closeSidebar }) => {
         </div>
 
         <div
-          className={`${styles.sidebar} z-50 absolute top-[64px] md:w-[60%] w-[90%] lg:hidden ${
+          className={`z-50 absolute top-[64px] md:w-[60%] w-[90%] lg:hidden ${
             !mobileSidebar ? "-translate-x-[100%] left-0" : "left-0 "
           } z-40 border-l-gray-600  transition ease-in-out cursor-pointer duration-300`}
         >

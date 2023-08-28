@@ -5,6 +5,7 @@ import Popup from "../Popup";
 import { useAuth } from "../../context/auth/AuthContext";
 import { Tooltip } from "@material-tailwind/react";
 
+
 const Members = ({ team, type, removeMember, hideMembers }) => {
   const router = useRouter();
   const { authUser } = useAuth();

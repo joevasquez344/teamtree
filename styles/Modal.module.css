@@ -24,6 +24,18 @@
   padding: 10px 0;
 }
 
+.app {
+  height: 100%
+}
+
+.sidebar {
+  height: 100%
+}
+
+.members {
+  height: 100%
+}
+
 
 
 .overlay {

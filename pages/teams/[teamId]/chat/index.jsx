@@ -60,7 +60,10 @@ const TeamChat = ({ mobileSidebarState }) => {
     ref.current.focus();
   };
 
-  const handleUnfocusInput = () => setReplyTo(null);
+  const handleUnfocusInput = () => {
+    setReplyTo(null);
+    setInput(null)
+  };
 
   const handleRemoveMember = (memberId) => {
     removeTeamMember(memberId, team.id, authUser.id);
@@ -142,7 +145,7 @@ const TeamChat = ({ mobileSidebarState }) => {
             membersMobile ? "-translate-x-[90%]  left-0 " : "left-0"
           }  ${
             mobileSidebarState ? "translate-x-[90%]  right-0 " : "right-0"
-          } col-span-12 h-screen md:col-span-8 lg:col-span-8 xl:col-span-9 2xl:col-span-10 bg-gray-700  overflow-y-scroll no-scrollbar  relative transition ease-in-out duration-300`}
+          } col-span-12   md:col-span-8 lg:col-span-8   xl:col-span-9 2xl:col-span-10 bg-gray-700 h-screen  overflow-y-scroll no-scrollbar  relative transition ease-in-out duration-300`}
         >
           <Chat
             messages={teamChat?.messages}
@@ -152,72 +155,51 @@ const TeamChat = ({ mobileSidebarState }) => {
           />
 
           <div
-            className={`absolute bottom-[112px]   ${
+            className={`sticky bottom-[126px] h-52 md:sticky   md:bottom-[100px] md:h-[100px] bg-gray-700  ${
               replyTo === null ? "md:pt-5" : "md:pt-3"
-            }   md:px-7 md:pb-5 mb-3 w-full   md:border-t md:border-t-gray-600 z-30 `}
+            }   md:px-7 md:pb-5  w-full pt-3 md:pt-5  md:border-t md:border-t-gray-600 z-40  `}
           >
             <div className="h-full">
-              {replyTo !== null && (
-                <div className="flex items-center space-x-1 mb-2">
-                  <div className="text-gray-300">Replying to</div>
-                  <div className="text-green-500"> {replyTo.user.name}</div>
-                </div>
-              )}
               <form
                 onSubmit={replyTo === null ? createMessage : createReply}
                 className={`${
-                  replyTo !== null && "border border-green-500"
-                }  flex items-center bg-gray-700 md:bg-gray-600 relative`}
+                  replyTo !== null && "md:border md:border-green-500 "
+                }  flex items-center bg-gray-700  md:bg-gray-600 relative`}
               >
-                {/* {replyTo === null && (
-                  <div className="ml-3">
-                    <Tooltip
-                      placement="bottom"
-                      content={
-                        task ? "Remove Task Designation" : "Assign as Task"
-                      }
-                      animate={{
-                        mount: { scale: 1, y: 0 },
-                        unmount: { scale: 0, y: 1 },
-                      }}
-                      className="hidden sm:flex px-3 py-2 rounded-md text-xs text-gray-500 font-bold bg-transparent z-50"
-                    >
-                      <div
-                        onClick={handleTaskDesignation}
-                        className={`h-7 w-7 rounded-full ${
-                          task
-                            ? "bg-green-400 text-green-700"
-                            : "border border-green-400 text-green-500 border-opacity-50"
-                        }  flex justify-center items-center cursor-pointer`}
-                      >
-                        <TaskIcon />
-                      </div>
-                    </Tooltip>
+                {replyTo !== null && (
+                  <div
+                    onClick={handleUnfocusInput}
+                    className="absolute cursor-pointer left-1.5 w-7 h-7 rounded-full bg-gray-900 hover:bg-gray-800  flex items-center justify-center transition ease-in-out duration-200"
+                  >
+                    <XIcon />
                   </div>
-                )} */}
-
+                )}
                 <input
                   ref={ref}
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  className="w-full py-2 md:py-3 mx-5 px-5 rounded-full bg-gray-800 md:bg-gray-600  outline-none text-gray-400"
+                  className={`w-full py-2 ${
+                    replyTo !== null && "placeholder:text-green-500"
+                  }  md:mt-0 md:py-3 mx-5 px-5 rounded-full bg-gray-800 md:bg-gray-600  outline-none text-gray-400`}
                   type="text"
                   placeholder={
                     replyTo !== null
-                      ? `Reply to ${replyTo.user.name}`
+                      ? `Reply to @${replyTo.user.username}`
                       : `Type ${task ? "Task" : "Message"}`
                   }
                 />
-             <div className="md:hidden absolute right-[20px] rounded-full bg-gray-900 px-5 h-full flex items-center justify-center text-white font-semibold">Send</div>
+                <div className="md:hidden  absolute right-[20px] md:right-0 rounded-full md:rounded-none bg-gray-900 px-5 h-full  flex items-center justify-center cursor-pointer hover:bg-black text-white font-semibold transition ease-in-out duration-200">
+                  Send
+                </div>
               </form>
-              {replyTo !== null && (
+              {/* {replyTo !== null && (
                 <div
                   onClick={handleUnfocusInput}
-                  className="text-green-500 text-xs cursor-pointer mt-3"
+                  className="text-green-500 text-xs cursor-pointer mt-3 ml-6 md:ml-0"
                 >
                   Cancel
                 </div>
-              )}
+              )} */}
             </div>
           </div>
         </div>
@@ -266,5 +248,22 @@ const TaskIcon = () => {
     </svg>
   );
 };
+
+const XIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    strokeWidth={1.5}
+    stroke="currentColor"
+    className="w-4 h-4 text-white"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M6 18L18 6M6 6l12 12"
+    />
+  </svg>
+);
 
 export default TeamChat;

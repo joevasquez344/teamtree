@@ -62,7 +62,7 @@ const TeamChat = ({ mobileSidebarState }) => {
 
   const handleUnfocusInput = () => {
     setReplyTo(null);
-    setInput(null)
+    setInput(null);
   };
 
   const handleRemoveMember = (memberId) => {
@@ -145,7 +145,7 @@ const TeamChat = ({ mobileSidebarState }) => {
             membersMobile ? "-translate-x-[90%]  left-0 " : "left-0"
           }  ${
             mobileSidebarState ? "translate-x-[90%]  right-0 " : "right-0"
-          } col-span-12   md:col-span-8 lg:col-span-8   xl:col-span-9 2xl:col-span-10 bg-gray-700 h-screen  overflow-y-scroll no-scrollbar  relative transition ease-in-out duration-300`}
+          } col-span-12   md:col-span-8 lg:col-span-8   xl:col-span-9 2xl:col-span-10 bg-gray-700  overflow-y-scroll no-scrollbar  relative transition ease-in-out duration-300`}
         >
           <Chat
             messages={teamChat?.messages}
@@ -155,9 +155,13 @@ const TeamChat = ({ mobileSidebarState }) => {
           />
 
           <div
-            className={`fixed bottom-0  md:sticky   md:bottom-[100px] md:h-[100px] bg-gray-700  ${
+            className={`fixed bottom-0 md:sticky   md:bottom-[100px] md:h-[100px] bg-gray-700  ${
               replyTo === null ? "md:pt-5" : "md:pt-3"
-            }   md:px-7 md:pb-5  w-full py-3 md:pt-5  md:border-t md:border-t-gray-600 z-40  `}
+            } ${
+              membersMobile ? "-translate-x-[90%]  left-0 " : "left-0"
+            }  ${
+              mobileSidebarState ? "translate-x-[90%]  right-0 " : "right-0"
+            }   md:px-7 md:pb-5  w-full py-3 border-t border-t-gray-600 md:pt-5  md:border-t md:border-t-gray-600 z-40  `}
           >
             <div className="h-full">
               <form

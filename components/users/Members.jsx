@@ -52,7 +52,7 @@ const Members = ({ team, type, removeMember, hideMembers }) => {
         closePopup={closePopup}
         popup={popup}
         styles={`${
-          popup ? "bottom-0" : " -bottom-[400px]"
+          popup ? "bottom-[56px]" : " -bottom-[400px]"
         } block sm:hidden  w-screen -left-[15%] bg-gray-800 rounded-tl-lg rounded-tr-lg shadow-lg transition ease-in-out duration-500`}
       >
         <div className="relative block sm:hidden">

@@ -134,7 +134,7 @@ const Navbar = ({ mobileSidebar, openMobileSidebar, closeMobileSidebar }) => {
     return (
       <>
         <div
-          className={`relative flex items-center justify-end bg-gray-800   h-16`}
+          className={`relative flex items-center justify-end bg-gray-800 h-16`}
         >
           <div className="lg:hidden absolute left-5">
             {mobileSidebar ? (

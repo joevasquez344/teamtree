@@ -14,7 +14,7 @@ const usePopupList = () => {
     setPopup(false);
   };
 
-  return { popup, closePopup, openPopup, inputEl };
+  return { popup, closePopup, openPopup, inputEl, setPopup };
 };
 
 export default usePopupList;

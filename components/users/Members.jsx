@@ -8,7 +8,8 @@ import { Tooltip } from "@material-tailwind/react";
 const Members = ({ team, type, removeMember, hideMembers }) => {
   const router = useRouter();
   const { authUser } = useAuth();
-  const { popup, openPopup, closePopup, inputEl } = usePopupList();
+  const { popup, openPopup, closePopup, inputEl, setPopup } = usePopupList();
+  const [memberDetails, setMemberDetails] = useState(null);
   // const [inputEl, setInputEl] = useState(-1);
   console.log("Team: ", team);
   const handleChat = (username) => {
@@ -19,6 +20,13 @@ const Members = ({ team, type, removeMember, hideMembers }) => {
     }
 
     router.push(`/teams/${router.query.teamId}/members/${username}`);
+  };
+
+  const handleMemberDetails = (member) => {
+    setPopup(true);
+    setMemberDetails(member);
+
+    openPopup(member.id);
   };
 
   const produceDate = (member) => {
@@ -38,7 +46,116 @@ const Members = ({ team, type, removeMember, hideMembers }) => {
   };
 
   return (
-    <div className="h-full rounded-tl-xl md:rounded-none bg-gray-700 py-7">
+    <div className="relative h-[calc(100vh-64px)] rounded-tl-xl md:rounded-none bg-gray-700 py-7">
+      <Popup
+        overlayStyles="bg-black opacity-70 block sm:hidden "
+        closePopup={closePopup}
+        popup={popup}
+        styles={`${
+          popup ? "bottom-0" : " -bottom-[400px]"
+        } block sm:hidden  w-screen -left-[15%] bg-gray-800 rounded-tl-lg rounded-tr-lg shadow-lg transition ease-in-out duration-500`}
+      >
+        <div className="relative block sm:hidden">
+          <div className="absolute right-5 -bottom-11 flex items-center space-x-3">
+            {authUser.id !== memberDetails?.id && (
+              <Tooltip
+                placement="top"
+                content="Direct Message"
+                animate={{
+                  mount: { scale: 1, y: 0 },
+                  unmount: { scale: 0, y: 1 },
+                }}
+                className="hidden sm:flex bg-gray-900 rounded  px-2 py-1 text-xs text-white  z-50"
+              >
+                <div className=" p-2 rounded-full bg-gray-900 cursor-pointer">
+                  <div className="text-gray-300">
+                    <ChatIcon />
+                  </div>
+                </div>
+              </Tooltip>
+            )}
+            {authUser.id === team.creatorId && (
+              <Tooltip
+                placement="top"
+                content={
+                  authUser.id === memberDetails?.id
+                    ? "Leave Team"
+                    : `Remove ${memberDetails?.name} from Team`
+                }
+                animate={{
+                  mount: { scale: 1, y: 0 },
+                  unmount: { scale: 0, y: 1 },
+                }}
+                className="hidden sm:flex bg-gray-900 rounded  px-2 py-1 text-xs text-white  z-50"
+              >
+                <div
+                  onClick={() => removeMember(memberDetails?.id)}
+                  className="p-2 rounded-full bg-gray-900 cursor-pointer"
+                >
+                  <div className="text-red-500">
+                    <RemoveUserIcon />
+                  </div>
+                </div>
+              </Tooltip>
+            )}
+          </div>
+          <div className="h-14 bg-blue-400 rounded-tl-lg rounded-tr-lg"></div>
+          <div className="w-24 h-24 flex items-center justify-center rounded-full bg-gray-800 absolute left-3 top-3">
+            {/* <div className="w-20 h-20 rounded-full bg-blue-400 z-40"></div> */}
+            <img
+              className="h-20 w-20 rounded-full "
+              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+              alt=""
+            />
+          </div>
+        </div>
+        <div className="bg-gray-800 mt-16 px-5 pb-5  rounded-bl-lg rounded-br-lg">
+          <div className="bg-gray-900 rounded-lg p-3">
+            <div className="border-b border-b-gray-700 pb-3">
+              <div className="text-white text-lg font-bold">
+                {memberDetails?.name}
+              </div>
+              <div className="text-white font-semibold">
+                @{memberDetails?.username}
+              </div>
+            </div>
+            <div className="flex items-center space-x-2">
+              <div className="text-white uppercase text-xs py-3 font-bold">
+                Member Since
+              </div>
+              <div className="text-white">-</div>
+              <div className="text-white">{produceDate(memberDetails)}</div>
+            </div>
+            {memberDetails?.position !== "" && (
+              <div>
+                <div className="font-bold uppercase text-white text-xs">
+                  Position
+                </div>
+                <div className="text-gray-400">{memberDetails?.position}</div>
+              </div>
+            )}
+
+            {authUser.id !== memberDetails?.id && (
+              <form>
+                <input
+                  className="bg-gray-900 text-white border border-gray-700 rounded w-full p-2 mt-8 outline-none"
+                  type="text"
+                  placeholder={`Message @${memberDetails?.username}`}
+                />
+              </form>
+            )}
+          </div>
+        </div>
+        {/* <div className="flex flex-col space-y-4 text-white">
+                {authUser.id !== member.id && <div>Chat</div>}
+                {authUser.id === team.creatorId &&
+                  authUser.id !== member.id && (
+                    <div onClick={() => removeMember(member.id)}>
+                      Remove Member
+                    </div>
+                  )}{" "}
+              </div> */}
+      </Popup>
       <div className="flex items-center justify-between  px-4 ">
         <div className="flex items-center text-xs text-gray-300  space-x-2">
           <div>MEMBERS</div> <div>-</div> <div>{team.members?.length}</div>
@@ -62,100 +179,111 @@ const Members = ({ team, type, removeMember, hideMembers }) => {
         </div>
       </div>
       {team.members?.map((member) => (
-        <div
-          key={member.id}
-          // onClick={() => handleChat(member.username)}
-          className="relative flex items-center justify-between py-2 text-sm px-4 hover:bg-gray-700 transition ease-in-out cursor-pointer duration-200"
-        >
-          {member.id === inputEl && (
-            <Popup
-              closePopup={closePopup}
-              popup={popup}
-              styles="-left-96 bg-gray-800 rounded-lg w-96 shadow-lg"
-            >
-              <div className="relative">
-                <div className="absolute right-5 -bottom-11 flex items-center space-x-3">
-                  {authUser.id !== member.id && (
-                    <Tooltip
-                      placement="top"
-                      content="Direct Message"
-                      animate={{
-                        mount: { scale: 1, y: 0 },
-                        unmount: { scale: 0, y: 1 },
-                      }}
-                      className="hidden sm:flex bg-gray-900 rounded  px-2 py-1 text-xs text-white  z-50"
-                    >
-                      <div className=" p-2 rounded-full bg-gray-900 cursor-pointer">
-                        <div className="text-gray-300">
-                          <ChatIcon />
-                        </div>
-                      </div>
-                    </Tooltip>
-                  )}
-                  {authUser.id === team.creatorId && (
-                    <Tooltip
-                      placement="top"
-                      content={
-                        authUser.id === member.id
-                          ? "Leave Team"
-                          : `Remove ${member.name} from Team`
-                      }
-                      animate={{
-                        mount: { scale: 1, y: 0 },
-                        unmount: { scale: 0, y: 1 },
-                      }}
-                      className="hidden sm:flex bg-gray-900 rounded  px-2 py-1 text-xs text-white  z-50"
-                    >
-                      <div
-                        onClick={() => removeMember(member.id)}
-                        className="p-2 rounded-full bg-gray-900 cursor-pointer"
+        <div key={member.id}>
+          <div
+            key={member.id}
+            // onClick={() => handleChat(member.username)}
+            className="relative flex items-center justify-between py-2 text-sm px-4 hover:bg-gray-700 transition ease-in-out cursor-pointer duration-200"
+          >
+            {member.id === inputEl && (
+              <Popup
+              overlayStyles="hidden sm:block"
+                closePopup={closePopup}
+                popup={popup}
+                styles="hidden sm:block -left-96 bg-gray-800 rounded-lg w-96 shadow-lg"
+              >
+                <div className="relative">
+                  <div className="absolute right-5 -bottom-11 flex items-center space-x-3">
+                    {authUser.id !== member.id && (
+                      <Tooltip
+                        placement="top"
+                        content="Direct Message"
+                        animate={{
+                          mount: { scale: 1, y: 0 },
+                          unmount: { scale: 0, y: 1 },
+                        }}
+                        className="hidden sm:flex bg-gray-900 rounded  px-2 py-1 text-xs text-white  z-50"
                       >
-                        <div className="text-red-500">
-                          <RemoveUserIcon />
+                        <div className=" p-2 rounded-full bg-gray-900 cursor-pointer">
+                          <div className="text-gray-300">
+                            <ChatIcon />
+                          </div>
                         </div>
+                      </Tooltip>
+                    )}
+                    {authUser.id === team.creatorId && (
+                      <Tooltip
+                        placement="top"
+                        content={
+                          authUser.id === member.id
+                            ? "Leave Team"
+                            : `Remove ${member.name} from Team`
+                        }
+                        animate={{
+                          mount: { scale: 1, y: 0 },
+                          unmount: { scale: 0, y: 1 },
+                        }}
+                        className="hidden sm:flex bg-gray-900 rounded  px-2 py-1 text-xs text-white  z-50"
+                      >
+                        <div
+                          onClick={() => removeMember(member.id)}
+                          className="p-2 rounded-full bg-gray-900 cursor-pointer"
+                        >
+                          <div className="text-red-500">
+                            <RemoveUserIcon />
+                          </div>
+                        </div>
+                      </Tooltip>
+                    )}
+                  </div>
+                  <div className="h-14 bg-blue-400 rounded-tl-lg rounded-tr-lg"></div>
+                  <div className="w-24 h-24 flex items-center justify-center rounded-full bg-gray-800 absolute left-3 top-3">
+                    {/* <div className="w-20 h-20 rounded-full bg-blue-400 z-40"></div> */}
+                    <img
+                      className="h-20 w-20 rounded-full "
+                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                      alt=""
+                    />
+                  </div>
+                </div>
+                <div className="bg-gray-800 mt-16 px-5 pb-5  rounded-bl-lg rounded-br-lg">
+                  <div className="bg-gray-900 rounded-lg p-3">
+                    <div className="border-b border-b-gray-700 pb-3">
+                      <div className="text-white text-lg font-bold">
+                        {member.name}
                       </div>
-                    </Tooltip>
-                  )}
-                </div>
-                <div className="h-14 bg-blue-400 rounded-tl-lg rounded-tr-lg"></div>
-                <div className="w-24 h-24 flex items-center justify-center rounded-full bg-gray-800 absolute left-3 top-3">
-                  {/* <div className="w-20 h-20 rounded-full bg-blue-400 z-40"></div> */}
-                  <img
-                    className="h-20 w-20 rounded-full "
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div className="bg-gray-800 mt-16 px-5 pb-5  rounded-bl-lg rounded-br-lg">
-                <div className="bg-gray-900 rounded-lg p-3">
-                  <div className="border-b border-b-gray-700 pb-3">
-                    <div className="text-white text-lg font-bold">
-                      {member.name}
+                      <div className="text-white font-semibold">
+                        @{member.username}
+                      </div>
                     </div>
-                    <div className="text-white font-semibold">
-                      @{member.username}
+                    <div className="flex items-center space-x-2">
+                      <div className="text-white uppercase text-xs py-3 font-bold">
+                        Member Since
+                      </div>
+                      <div className="text-white">-</div>
+                      <div className="text-white">{produceDate(member)}</div>
                     </div>
+                    {member.position !== "" && (
+                      <div>
+                        <div className="font-bold uppercase text-white text-xs">
+                          Position
+                        </div>
+                        <div className="text-gray-400">{member.position}</div>
+                      </div>
+                    )}
+
+                    {authUser.id !== member.id && (
+                      <form>
+                        <input
+                          className="bg-gray-900 text-white border border-gray-700 rounded w-full p-2 mt-8 outline-none"
+                          type="text"
+                          placeholder={`Message @${member.username}`}
+                        />
+                      </form>
+                    )}
                   </div>
-                  <div className="flex items-center space-x-2">
-                    <div className="text-white uppercase text-xs py-3 font-bold">
-                      Member Since
-                    </div>
-                    <div className="text-white">-</div>
-                    <div className="text-white">{produceDate(member)}</div>
-                  </div>
-                  {authUser.id !== member.id && (
-                    <form>
-                      <input
-                        className="bg-gray-900 text-white border border-gray-700 rounded w-full p-2 mt-8 outline-none"
-                        type="text"
-                        placeholder={`Message @${member.username}`}
-                      />
-                    </form>
-                  )}
                 </div>
-              </div>
-              {/* <div className="flex flex-col space-y-4 text-white">
+                {/* <div className="flex flex-col space-y-4 text-white">
                 {authUser.id !== member.id && <div>Chat</div>}
                 {authUser.id === team.creatorId &&
                   authUser.id !== member.id && (
@@ -164,30 +292,31 @@ const Members = ({ team, type, removeMember, hideMembers }) => {
                     </div>
                   )}{" "}
               </div> */}
-            </Popup>
-          )}
+              </Popup>
+            )}
 
-          <div
-            className="flex items-center w-full hover:bg-gray-600  text-gray-400"
-            onClick={() => openPopup(member.id)}
-          >
-            <img
-              className="h-8 w-8 rounded-full mr-3"
-              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-              alt=""
-            />
-            <div className="flex flex-col">
-              <div className="group-hover:text-blue-400 font-bold mr-1">
-                {member.name}
-              </div>
-              <div className="group-hover:text-blue-400">
-                @{member.username}
+            <div
+              className="flex items-center w-full hover:bg-gray-600  text-gray-400"
+              onClick={() => handleMemberDetails(member)}
+            >
+              <img
+                className="h-8 w-8 rounded-full mr-3"
+                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                alt=""
+              />
+              <div className="flex flex-col">
+                <div className="group-hover:text-blue-400 font-bold mr-1">
+                  {member.name}
+                </div>
+                <div className="group-hover:text-blue-400">
+                  @{member.username}
+                </div>
               </div>
             </div>
-          </div>
-          {/* <div onClick={() => openPopup(member.id)}>
+            {/* <div onClick={() => openPopup(member.id)}>
             <MoreIcon />
           </div> */}
+          </div>
         </div>
       ))}
     </div>

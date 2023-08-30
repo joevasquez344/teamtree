@@ -22,7 +22,7 @@ const createTeamMessage = async (authUser, teamId, text, type, chatId) => {
   const userRef = doc(db, `users/${authUser.id}`);
   const teamRef = doc(db, `teams/${teamId}`);
 
-  const isMember = isTeamMember(teamId, authId)
+  const isMember = isTeamMember(teamId, authUser.id)
 
   if(!isMember) {
     return false

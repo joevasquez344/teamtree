@@ -288,6 +288,10 @@ export function TeamsProvider({ children }) {
       teamChat.id
     );
 
+    if(!message) {
+      router.push('/teams');
+    }
+
     const chat = {
       ...teamChat,
       messages: [...teamChat.messages, message],

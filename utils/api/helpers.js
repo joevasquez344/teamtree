@@ -18,8 +18,8 @@ import { db } from "../../firebase/config";
 export const isTeamMember = async (teamId, authId) => {
   const ref = doc(db, `teams/${teamId}/users/${authId}`);
   const snapshot = await getDoc(ref);
-  console.log("Snapshot Id: ", snapshot);
-  if (snapshot._document !== null) return true;
+  console.log("Snapshot Id: ", snapshot.exists());
+  if (snapshot._document !== null || snapshot.exists()) return true;
   else return false;
 };
 export const isGroupMember = async (groupId, authId) => {

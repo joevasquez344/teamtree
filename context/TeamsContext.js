@@ -288,8 +288,9 @@ export function TeamsProvider({ children }) {
       teamChat.id
     );
 
-    if(!message) {
-      router.push('/teams');
+    if (!message) {
+      alert("You are no longer apart of this team");
+      router.push("/teams");
     }
 
     const chat = {
@@ -623,11 +624,9 @@ export function TeamsProvider({ children }) {
     let updatedTeams = teams.filter((team) => team.id !== teamId);
     setTeamsHistory(teamsHistory.filter((team) => team.id !== teamId));
 
-    if (updatedTeams.length > 0) {
-      router.push(`/teams/${updatedTeams[0].id}/tasks`);
-    } else {
-      router.push("/createteam");
-    }
+
+      router.push("/teams");
+   
 
     setTeams(updatedTeams);
   };

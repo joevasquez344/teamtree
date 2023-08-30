@@ -25,7 +25,7 @@ const createTeamMessage = async (authUser, teamId, text, type, chatId) => {
   const isMember = isTeamMember(teamId, authId)
 
   if(!isMember) {
-    return alert("You are no longer apart of this team")
+    return false
   }
 
   const { id } = await addDoc(messagesRef, {

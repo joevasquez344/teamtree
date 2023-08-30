@@ -14,12 +14,19 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 import { db } from "../../firebase/config";
+import { isTeamMember } from "./helpers";
 
 const createTeamMessage = async (authUser, teamId, text, type, chatId) => {
   const messagesRef = collection(db, "messages");
   const chatRef = doc(db, `chats/${chatId}`);
   const userRef = doc(db, `users/${authUser.id}`);
   const teamRef = doc(db, `teams/${teamId}`);
+
+  const isMember = isTeamMember(teamId, authId)
+
+  if(!isMember) {
+    return prompt("You are no longer apart of this team")
+  }
 
   const { id } = await addDoc(messagesRef, {
     userRef,

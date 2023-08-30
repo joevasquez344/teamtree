@@ -217,7 +217,7 @@ export function TeamsProvider({ children }) {
           router.push(`/teams/${teams[0].id}/tasks`);
           return;
         } else {
-          router.push("/createteam");
+          router.push("/teams");
           return;
         }
       }

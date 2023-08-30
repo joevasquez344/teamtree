@@ -38,7 +38,7 @@ const CreateTeamForm = () => {
 
 
   return (
-    <div className="py-5 bg-gray-800 w-[500px]">
+    <div className="py-5 bg-gray-800 h-screen border-t border-t-gray-700 sm:border-none sm:w-[500px]">
       <div className="w-full">
         <form className="bg-gray-800 rounded mx-auto mb-6">
           <div className="flex space-x-3 px-5 mb-4 border-b border-b-gray-700 pb-4 shadow">
@@ -159,7 +159,7 @@ const CreateTeamForm = () => {
             <div className="mt-4 pb-3 border-b">
               <div className="text-gray-400  ">Invite List</div>
               {inviteList.map((user) => (
-                <div className="flex items-center justify-between rounded  p-2">
+                <div key={user.id} className="flex items-center justify-between rounded  p-2">
                   <div className="flex items-center space-x-1 text-gray-400">
                     <img
                       className="h-6 w-6 rounded-full"

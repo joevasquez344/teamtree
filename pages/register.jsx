@@ -82,7 +82,7 @@ const register = () => {
   const signup = async () => {
     if (validateForm()) {
       await register(form);
-      router.push("/createteam");
+      router.push("/teams");
     }
   };
 

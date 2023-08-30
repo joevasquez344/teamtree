@@ -24,7 +24,7 @@ const createTeamMessage = async (authUser, teamId, text, type, chatId) => {
 
   const isMember = isTeamMember(teamId, authUser.id)
 
-  if(!isMember) {
+  if(isMember === false) {
     return false
   }
 

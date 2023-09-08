@@ -96,13 +96,14 @@ const NotificationList = ({ notifications, decrementCount }) => {
     console.log("Task Assignments: ", taskAssignments);
   }, []);
   return (
-    <div className="bg-gray-900 h-96 z-50 overflow-scroll">
+    <div className="bg-gray-900 h-96  overflow-scroll">
       <div>
         <div className="font-semibold text-gray-200 px-3 py-2">
           Notifications
         </div>
         {notifications.map((notification) => (
           <NotificationItem
+          key={notification.id}
             notification={notification}
             decrementCount={decrementCount}
           />

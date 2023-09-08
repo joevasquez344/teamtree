@@ -21,8 +21,8 @@ const InviteNotification = ({ notification, decrementCount }) => {
       </div> */}
         <div className="text-gray-400 flex items-center">
           <div className="flex items-center space-x-1">
-            <div className="text-white">{notification?.team.name}</div>{" "}
-            <div> sent you an invite to their team.</div>
+            <div className="text-white">Team Invite</div>{" "}
+            <div> {notification?.team.name}</div>
           </div>
         </div>
         {notification.status === "pending" ? (
@@ -51,8 +51,8 @@ const InviteNotification = ({ notification, decrementCount }) => {
           {groupName && <div>{groupName}</div>}
         </div> */}
         <div>
-          Team {notification.team.name} sent you an Invite to Group{" "}
-          {notification.group.name}.
+          Team {notification.team.name} Group{" "}
+          {notification.group.name} Invite.
         </div>
         <div className="border border-green-500 font-semibold px-3 py-1 text-sm text-white cursor-pointer rounded-md">
           Join

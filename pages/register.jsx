@@ -92,10 +92,11 @@ const register = () => {
 
   return (
    
-      <div className="bg-gray-800 flex flex-col justify-center items-center pt-10">
+      <div className="bg-gray-800 w-screen h-screen flex flex-col justify-center items-center pt-10 md:pt-0">
         <div className="w-full sm:w-1/2 xl:w-1/3">
           {/* <div className="text-gray-300 mb-6 text-center font-bold text-3xl">Sign Up</div> */}
-          <form className="bg-gray-900 p-6 md:p-0 w-[90%] rounded mx-auto mb-6">
+          <form className="bg-gray-900 p-6  w-[90%] rounded mx-auto mb-6">
+            <div className="text-white text-xl font-semibold mb-4">Sign Up</div>
             <div className="mb-4">
               <label className="block text-gray-500 text-sm font-bold mb-2">
                 Display Name
@@ -104,7 +105,7 @@ const register = () => {
                 name="displayname"
                 value={form.displayname}
                 onChange={handleInputChange}
-                className="shadow appearance-none bg-gray-800 rounded w-full py-2 px-3 text-gray-500 leading-tight focus:outline-none focus:shadow-outline"
+                className="shadow appearance-none bg-gray-800 rounded w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:shadow-outline"
                 id="username"
                 type="text"
                 placeholder="Display Name"
@@ -118,7 +119,7 @@ const register = () => {
                 name="username"
                 value={form.username}
                 onChange={handleInputChange}
-                className="shadow appearance-none bg-gray-800 rounded w-full py-2 px-3 text-gray-500 leading-tight focus:outline-none focus:shadow-outline"
+                className="shadow appearance-none bg-gray-800 rounded w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:shadow-outline"
                 id="username"
                 type="text"
                 placeholder="Username"
@@ -132,7 +133,7 @@ const register = () => {
                 name="email"
                 value={form.email}
                 onChange={handleInputChange}
-                className="shadow appearance-none bg-gray-800 rounded w-full py-2 px-3 text-gray-500 leading-tight focus:outline-none focus:shadow-outline"
+                className="shadow appearance-none bg-gray-800 rounded w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:shadow-outline"
                 id="username"
                 type="text"
                 placeholder="Email"
@@ -145,7 +146,7 @@ const register = () => {
               <select
                 onChange={handleInputChange}
                 value={form.position}
-                className=" bg-gray-800 rounded w-full py-2 px-3 text-gray-500 leading-tight focus:outline-none focus:shadow-outline "
+                className=" bg-gray-800 rounded w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:shadow-outline "
                 name="Position"
                 id=""
               >
@@ -161,7 +162,7 @@ const register = () => {
                     name="customposition"
                     value={form.customposition}
                     onChange={handleInputChange}
-                    className="shadow appearance-none bg-gray-800 rounded w-full py-2 px-3 text-gray-500 leading-tight focus:outline-none focus:shadow-outline"
+                    className="shadow appearance-none bg-gray-800 rounded w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:shadow-outline"
                     type="text"
                     placeholder="What role would you like?"
                   />
@@ -176,7 +177,7 @@ const register = () => {
                 name="password"
                 value={form.password}
                 onChange={handleInputChange}
-                className="shadow appearance-none bg-gray-800 border-red-500 rounded w-full py-2 px-3 text-gray-500 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                className="shadow appearance-none bg-gray-800 border-red-500 rounded w-full py-2 px-3 text-gray-300 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                 id="password"
                 type={passwordHidden ? "password" : "text"}
                 placeholder="******************"
@@ -201,7 +202,7 @@ const register = () => {
                 name="confirmpassword"
                 value={form.confirmpassword}
                 onChange={handleInputChange}
-                className="shadow appearance-none bg-gray-800 border-red-500 rounded w-full py-2 px-3 text-gray-500 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                className="shadow appearance-none bg-gray-800 border-red-500 rounded w-full py-2 px-3 text-gray-300 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                 id="password"
                 type={confirmPasswordHidden ? "password" : "text"}
                 placeholder="******************"
@@ -227,7 +228,7 @@ const register = () => {
                 Register
               </button>
               <div>
-                Already have an account?{" "}
+                <span className="text-gray-300">Already have an account?</span>{" "}
                 <span
                   onClick={() => router.push(`/login`)}
                   className="text-green-500 font-bold cursor-pointer"

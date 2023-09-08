@@ -26,7 +26,7 @@ const Login = () => {
   return (
     <div className="flex flex-col justify-center items-center">
       <div className="w-full">
-        <form className="bg-gray-900 p-6 md:p-0 rounded mx-auto mb-6">
+        <form className="bg-gray-900 p-6  rounded mx-auto mb-6">
           <div className="mb-4">
             <label className="block text-gray-500 text-sm font-bold mb-2">
               Email
@@ -35,7 +35,7 @@ const Login = () => {
               onChange={handleInputChange}
               name="email"
               value={form.email}
-              className="shadow appearance-none rounded w-full py-2 px-3 text-gray-700 bg-gray-800 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none rounded w-full py-2 px-3 text-gray-300 bg-gray-800 leading-tight focus:outline-none focus:shadow-outline"
               id="username"
               type="text"
               placeholder="Email"
@@ -49,7 +49,7 @@ const Login = () => {
               onChange={handleInputChange}
               name="password"
               value={form.password}
-              className="shadow appearance-none bg-gray-800 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none bg-gray-800 rounded w-full py-2 px-3 text-gray-300 mb-3 leading-tight focus:outline-none focus:shadow-outline"
               id="password"
               type={passwordHidden ? "password" : "text"}
               placeholder="Password - At least 6 characters"
@@ -69,7 +69,7 @@ const Login = () => {
           <div className="flex flex-col space-y-4">
             <button
               onClick={handleLogin}
-              className="bg-green-500 hover:bg-blue-100 hover:text-blue-400 text-white font-bold py-2 px-4 rounded focus:outline-none transition ease-in-out cursor-pointer duration-200 focus:shadow-outline"
+              className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none transition ease-in-out cursor-pointer duration-200 focus:shadow-outline"
               type="button"
             >
               Sign In

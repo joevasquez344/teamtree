@@ -126,7 +126,7 @@ const Navbar = ({ mobileSidebar, openMobileSidebar, closeMobileSidebar }) => {
 
     getData();
   }, []);
-  const isTeamRoute = router.pathname.split("/")[1];
+  const isTeamRoute = router.pathname.split("/")[1] === "teams";
   console.log("Routeee: ", isTeamRoute);
   console.log("Notifications: ", notifications);
 
@@ -136,17 +136,33 @@ const Navbar = ({ mobileSidebar, openMobileSidebar, closeMobileSidebar }) => {
         <div
           className={` flex items-center justify-end w-full bg-gray-800 h-16`}
         >
-          <div className="lg:hidden absolute left-5">
-            {mobileSidebar ? (
-              <div onClick={closeMobileSidebar}>
-                <MenuIcon />
-              </div>
-            ) : (
-              <div onClick={openMobileSidebar}>
-                <MenuIcon />
-              </div>
-            )}
-          </div>
+          {isTeamRoute && (
+            <div className="lg:hidden absolute left-5">
+              {mobileSidebar ? (
+                <div onClick={closeMobileSidebar}>
+                  <MenuIcon />
+                </div>
+              ) : (
+                <div onClick={openMobileSidebar}>
+                  <MenuIcon />
+                </div>
+              )}
+            </div>
+          )}
+            <Popup
+                  closePopup={closeNotificationPopup}
+                  popup={notificationPopup}
+                  styles="bottom-0 left-0 right-0 sm:hidden"
+                  overlayStyles="bg-black opacity-60 sm:opacity-0"
+                >
+                  <div className="">
+                    <NotificationList
+                      decrementCount={decrementCount}
+                      notifications={notifications}
+                    />
+                  </div>
+                </Popup>
+
           <div className="absolute left-1/2 -ml-20 flex items-center space-x-3 text-white">
             <div className="text-lg md:text-xl font-bold font-mono">
               Team Tree
@@ -169,17 +185,21 @@ const Navbar = ({ mobileSidebar, openMobileSidebar, closeMobileSidebar }) => {
           <ProtectedComponent>
             <div className="flex items-center space-x-5">
               <div className="relative">
-                <Popup
-                  closePopup={closeNotificationPopup}
-                  popup={notificationPopup}
-                >
-                  <div className="absolute -left-[550px] top-8 z-50 shadow-lg rounded bg-white w-[550px]">
-                    <NotificationList
-                      decrementCount={decrementCount}
-                      notifications={notifications}
-                    />
-                  </div>
-                </Popup>
+                <div className="hidden sm:block">
+                  <Popup
+                    closePopup={closeNotificationPopup}
+                    popup={notificationPopup}
+                    styles="bottom-0 left-0 right-0 sm:-left-[550px] md:w-[550px] sm:top-8"
+                    overlayStyles="bg-black opacity-60 sm:opacity-0"
+                  >
+                    <div className="">
+                      <NotificationList
+                        decrementCount={decrementCount}
+                        notifications={notifications}
+                      />
+                    </div>
+                  </Popup>
+                </div>
                 <div className="relative">
                   <div className="absolute md:bg-gray-900 px-1 text-sm md:text-base rounded-full text-red-500 -right-1 -top-2 md:-top-3 md:right-0">
                     {notificationCount}

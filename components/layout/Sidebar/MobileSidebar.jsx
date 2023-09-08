@@ -82,6 +82,8 @@ const MobileSidebar = ({ closeSidebar }) => {
     closeSidebar();
   };
 
+  const handleCreateTeamRoute = () => router.push("/createteam");
+
   useEffect(() => {
     const activeTab = teamTabs.find((tab) => tab.active);
     const updatedTabs = teamTabs.map((tab) => {
@@ -106,9 +108,15 @@ const MobileSidebar = ({ closeSidebar }) => {
 
   return (
     <div className="bg-gray-800 pr-3">
-      <div className="flex bg-gray-800 ">
-        <div className="flex bg-gray-800 flex-col p-3 ">
+      <div className="flex bg-gray-800 pl-4">
+        {/* <div className="flex bg-gray-800 flex-col px-3 ">
           {" "}
+          <div
+            onClick={handleCreateTeamRoute}
+            className="w-10 h-10 mb-3 flex items-center justify-center rounded-full bg-gray-800 border border-gray-700"
+          >
+            <PlusIcon />
+          </div>
           {teams?.map((team) => (
             // <Tooltip
             //   placement="right"
@@ -143,10 +151,10 @@ const MobileSidebar = ({ closeSidebar }) => {
               )}
             </div>
           ))}
-        </div>
-        <div className=" relative bg-gray-700 w-full  flex flex-col justify-between h-[calc(100vh-180px)] rounded-xl text-gray-200 font-semibold ">
+        </div> */}
+        <div className=" relative bg-gray-700 w-full  flex flex-col  h-[calc(100vh-180px)] rounded-xl text-gray-200  ">
           <div className=" flex items-center justify-between py-2 px-3">
-            <div> {team?.name}</div>
+            <div className="font-semibold"> {team?.name}</div>
             <div
               className="bg-gray-800 rounded-full w-7 h-7 flex items-center justify-center"
               onClick={openInvitePopup}
@@ -154,18 +162,54 @@ const MobileSidebar = ({ closeSidebar }) => {
               <AddUserIcon />
             </div>
             {inviteMembersPopup && (
-            <TeamInvitePopup
-              team={team}
-              openPopup={openInvitePopup}
-              closePopup={closeInvitePopup}
-              inviteMembersPopup={inviteMembersPopup}
-            />
-          )}
+              <TeamInvitePopup
+                team={team}
+                openPopup={openInvitePopup}
+                closePopup={closeInvitePopup}
+                inviteMembersPopup={inviteMembersPopup}
+              />
+            )}
           </div>
+    
 
-         
-
-          <div className="flex flex-col space-y-3 mb-3">
+          <div className="absolute bottom-0 w-full flex flex-col space-y-3 mb-3">
+            <div className="text-sm  mx-3 rounded-lg p-3 mb-3">
+              <div className="uppercase text-xs mb-2">Direct Messages</div>
+              <div className=" flex flex-col s max-h-64 space-y-1  overflow-y-scroll ">
+                {team?.members?.map((member) => (
+                  <div className="flex items-center py-1 space-x-2" key={member.id}>
+                    {" "}
+                    <img
+                      className="h-6 w-6 rounded-full "
+                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                      alt=""
+                    />
+                    <div className="flex items-center space-x-1">
+                      <div className="text-sm font-semibold">{member.name}</div>
+                      <div className="text-xs text-gray-400">
+                        @{member.username}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+                {team?.members?.map((member) => (
+                  <div className="flex items-center py-1 space-x-2" key={member.id}>
+                    {" "}
+                    <img
+                      className="h-6 w-6 rounded-full "
+                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                      alt=""
+                    />
+                    <div className="flex items-center space-x-1">
+                      <div className="text-sm font-semibold">{member.name}</div>
+                      <div className="text-xs text-gray-400">
+                        @{member.username}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
             {teamTabs.map((tab) => (
               <div
                 key={tab.id}
@@ -273,7 +317,7 @@ const PlusIcon = () => {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className="w-4 h-4"
+      className="w-6 h-6 text-white"
     >
       <path
         strokeLinecap="round"

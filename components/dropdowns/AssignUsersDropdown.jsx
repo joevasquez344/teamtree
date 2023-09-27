@@ -10,7 +10,7 @@ const AssignUsersDropdown = ({
 }) => {
   const borderBottom = members.length > 1 && "border-b border-b-gray-800";
   return (
-    <div className="bg-gray-900 px-8 py-4 rounded-br-lg rounded-bl-lg  border-t-gray-600">
+    <div className="bg-gray-900 px-4 py-2 sm:px-8 sm:py-4 rounded-br-lg rounded-bl-lg  border-t-gray-600">
       {members
         .filter((user) => user.username)
         .map((member, idx) => (
@@ -21,7 +21,7 @@ const AssignUsersDropdown = ({
                 : () => assignUser(member)
             }
             key={member.id}
-            className={`py-2 px-5 text-sm flex items-center justify-between bg-gray-900 ${borderBottom} ${
+            className={`py-2 sm:px-5 text-sm flex items-center justify-between bg-gray-900 ${borderBottom} ${
               members.length === idx + 1 && "border-none"
             }   hover:bg-black transition ease-in-out cursor-pointer duration-200`}
           >

@@ -8,7 +8,7 @@ const MembersContainer = ({handleRemoveMember, mobileSidebarState, membersMobile
   return (
     <>
       <div
-        className={`hidden border-l border-l-gray-600  md:block md:col-span-4 lg:col-span-4 xl:col-span-3 2xl:col-span-2 transition ease-in-out  duration-300 ${
+        className={`hidden border-l py-7 bg-gray-700 border-l-gray-600  md:block md:col-span-4 lg:col-span-4 xl:col-span-3 2xl:col-span-2 transition ease-in-out  duration-300 ${
           mobileSidebarState ? "translate-x-[90%]  right-0 " : "right-0"
         } `}
       >
@@ -20,7 +20,7 @@ const MembersContainer = ({handleRemoveMember, mobileSidebarState, membersMobile
           !membersMobile ? "translate-x-[100%] w-[90%] right-0" : "right-0"
         }  w-[90%] z-40 h-[calc(100%-76px)]  transition ease-in-out cursor-pointer duration-300 `}
       >
-        <div className=" ml-3 h-full ">
+        <div className=" py-7 ml-3 h-screen bg-gray-700 ">
           <Members
             team={team}
             removeMember={handleRemoveMember}

@@ -22,14 +22,16 @@ const TopAlert = ({ children, alertType }) => {
 
   return (
     <div
-      className={` fixed flex items-center space-x-4 z-50 ${
+      className={` fixed flex items-center justify-center space-x-4 z-50 ${
         !show ? "-translate-y-36" : "-translate-y-7"
-      } left-1/2 shadow-xl transition ease-in-out duration-500 ${
-        alertType === "delete" ? "bg-red-500" : "bg-green-500"
-      } text-white font-semibold py-2 px-5 rounded-sm`}
+      } w-screen sm:left-0 transition ease-in-out duration-500 text-white font-semibold py-2 px-5`}
     >
-      <div> {children}</div>
-      <CheckIcon />
+      <div className={`flex items-center space-x-4 shadow-xl px-4 py-2 rounded-sm ${
+        alertType === "delete" ? "bg-red-500" : "bg-green-500"
+      }`}>
+        <div> {children}</div>
+        <CheckIcon />
+      </div>
     </div>
   );
 };

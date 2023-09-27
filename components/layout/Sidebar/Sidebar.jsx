@@ -295,7 +295,7 @@ const Sidebar = ({ teams }) => {
         {team !== null && (
           <>
             {" "}
-            <>
+            {/* <>
               {" "}
               <Groups
                 groups={groups}
@@ -314,9 +314,9 @@ const Sidebar = ({ teams }) => {
                   <CreateGroupForm team={team} />
                 </div>
               )}
-            </>
+            </> */}
             <div className="">
-              <div className="flex items-center relative justify-between pl-3 pr-2 mb-2 py-1 text-white text-sm">
+              <div className="flex items-center relative justify-between px-3  border mb-2 py-1 text-white text-sm">
                 <div className="font-bold">Direct Messages</div>
                 <div className="cursor-pointer">
                   <svg
@@ -336,9 +336,9 @@ const Sidebar = ({ teams }) => {
                 </div>
               </div>
               <div>
-                <div className="px-3">
+              
                   <Members team={team} type="chat" />
-                </div>
+           
               </div>
             </div>
           </>

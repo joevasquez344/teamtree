@@ -61,7 +61,7 @@ const TeamChat = ({ mobileSidebarState }) => {
 
   const handleFocusInput = (message) => {
     setReplyTo(message);
-    ref.current.focus();
+    ref.current?.focus();
   };
 
   const handleUnfocusInput = () => {

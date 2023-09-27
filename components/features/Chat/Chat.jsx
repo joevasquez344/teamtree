@@ -104,7 +104,7 @@ const Chat = ({ messages, reply, membersMobile, mobileSidebarState }) => {
 
   useEffect(() => {
     if (inputEl !== -1) {
-      ref.current.focus();
+      ref?.current?.focus();
     }
   }, [inputEl]);
 
